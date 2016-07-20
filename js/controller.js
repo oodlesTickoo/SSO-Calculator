@@ -8,7 +8,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
   $scope.resultWithoutSS=[0,0,0];
 
   $scope.cses = 0;
-  $scope.beforeTTR = 0;
+  $scope.excludeSGC = 0;
   $scope.tfp = 0;
   $scope.nra = 0;
   $scope.nrp = 0;
@@ -142,7 +142,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         $scope.unattainableTHP = $scope.resultWithSS[5];
         $scope.favourableDD = $scope.resultWithSS[3];
         $scope.favourableSS = $scope.resultWithSS[4];
-        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age,$scope.datePension,$scope.cses,$scope.beforeTTR,$scope.tfp,$scope.nra,$scope.nrp,$scope.target);
+        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age,$scope.datePension,$scope.excludeSGC,$scope.target);
         console.log("complete");
       }else{
         console.log("has errors");
