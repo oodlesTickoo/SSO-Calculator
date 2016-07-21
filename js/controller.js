@@ -128,28 +128,34 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
       $scope.age = AgeCalculator.getAge($scope.dob);
     }
 
-    $scope.Math = window.Math
+    $scope.Math = window.Math;
+
+    $scope.unattainableTHP = false;
+
+    $scope.attainableTHP = false;
+
+    $scope.optimisedSS;
 
     $scope.submitForm = function(isValid){
-      // if($scope.unattainableTHP == true){
-      //   $scope.unattainableTHP = false;
-      // }
-
       if(isValid){
         $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target);
         $scope.thpWithoutSS = $scope.resultWithoutSS[0];
         $scope.taxWithoutSS = $scope.resultWithoutSS[1];
+        $scope.finalAmountWithoutSS = $scope.resultWithoutSS[2];
         $scope.resultWithSS = WithSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,$scope.taxWithoutSS);
-        $scope.thpWithSS = $scope.resultWithSS[3];
-        $scope.finalSS = $scope.resultWithSS[2];
-        $scope.taxSavingWithSS = $scope.resultWithSS[1];
-        $scope.taxWithSS = $scope.resultWithSS[0];
-        console.log($scope.thpWithoutSS);
-        console.log($scope.taxWithoutSS);
-        console.log($scope.thpWithSS);
-        console.log($scope.taxWithSS);
-        console.log($scope.taxSavingWithSS);
-        console.log($scope.finalSS);
+        $scope.thpWithSS = $scope.resultWithSS[0];
+        $scope.taxWithSS = $scope.resultWithSS[1];
+        $scope.finalAmountWithSS = $scope.resultWithSS[2];
+        // $scope.finalSS = $scope.resultWithSS[3];
+        $scope.optimisedSS = $scope.resultWithSS[3];
+        $scope.unattainableTHP = $scope.resultWithSS[4];
+        $scope.attainableTHP = !$scope.unattainableTHP;
+        // console.log($scope.thpWithoutSS);
+        // console.log($scope.taxWithoutSS);
+        // console.log($scope.thpWithSS);
+        // console.log($scope.taxWithSS);
+        // console.log($scope.finalAmountWithSS);
+        // console.log($scope.finalSS);
         console.log("complete");
       }else{
         console.log("has errors");
