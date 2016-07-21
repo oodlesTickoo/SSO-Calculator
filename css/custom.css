@@ -336,4 +336,15 @@ input[type=number] {
   .info-content p{
     margin-top: 15px;
 
-  }  
+  }
+
+	.unattainable-thp-error{
+	margin-top:10px;
+	font-size:10px;
+	color:crimson;
+}
+.attainable-thp{
+	margin-top:10px;
+	font-size:10px;
+	color:cornflowerblue;
+}

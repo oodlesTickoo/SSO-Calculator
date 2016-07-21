@@ -25,13 +25,17 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
             var grossAnnualIncomebeforeSGC=excludeSGC;
 
-            var maxTax = excludeSGC;
+            var minTax = taxWithoutSS;
 
-            var taxSaving = 0;
+            // var taxSaving = 0;
 
             var optimisedSS = 0;
 
             var optimisedTakeHomePay = 0;
+
+            var unattainableTHP = true;
+
+            var finalAmountWithSS = 0;
 
             for(ss=1;ss<=upperSS;ss++){
             var additionalConcessionalContribution = ss;
@@ -49,16 +53,18 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
               var finalAmount=takehomePay+boostUpSuperBalanceBy;
               var totalTaxPaid=personalTax+contributionTax;
 
-              if(totalTaxPaid < taxWithoutSS && totalTaxPaid < maxTax){
-                maxtax = totalTaxPaid;
-                taxSaving = taxWithoutSS - totalTaxPaid;
+              if(totalTaxPaid < taxWithoutSS && totalTaxPaid < minTax){
+                console.log("tax paid", totalTaxPaid);
+                minTax = totalTaxPaid;
                 optimisedSS = additionalConcessionalContribution;
                 optimisedTakeHomePay = takehomePay;
+                unattainableTHP = false;
+                finalAmountWithSS = finalAmount;
               }
             }
           }
 
-          return [maxTax,taxSaving,optimisedSS,optimisedTakeHomePay];
+          return [optimisedTakeHomePay,minTax,finalAmountWithSS,optimisedSS,unattainableTHP];
 
 
       };

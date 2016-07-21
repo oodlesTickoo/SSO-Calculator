@@ -23,7 +23,7 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function(TaxRa
             var ttakehomePay=personalTax+contributionTax;
             console.log(personalTax);
             console.log(contributionTax);
-            return [takehomePay,ttakehomePay];
+            return [takehomePay,ttakehomePay,finalAmount];
       };
 
 }]);
