@@ -1,8 +1,8 @@
 
 //var WithoutSSCalculatorService = angular.module('WithoutSSCalculatorService', [])
-app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',funcontributionTaxion (TaxRateCalculator,SGCRate){
-        this.getFinalAmount = funcontributionTaxion (age,datePension,excludeSGC,minTakeHomePay) {
-            var sgc=SGCRate.calculateSGCRate(datePension);
+app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',function(TaxRateCalculator,SGCRate){
+        this.getFinalAmount = function(age,datePension,excludeSGC,minTakeHomePay) {
+            var sgc=SGCRate.calculateSGCRate(datePension)*excludeSGC;
             var concessionalContributionCap;
             concessionalContributionCap=age<49?30000:35000;
             var concessionalContributionTax=0.15;
@@ -21,7 +21,9 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate',funcontributio
             var boostUpSuperBalanceBy=concessionalContribution-contributionTax;
             var finalAmount=takehomePay+boostUpSuperBalanceBy;
             var ttakehomePay=personalTax+contributionTax;
-
+            console.log(personalTax);
+            console.log(contributionTax);
+            return [takehomePay,ttakehomePay];
       };
 
 }]);
