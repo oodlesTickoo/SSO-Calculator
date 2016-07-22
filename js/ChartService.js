@@ -7,23 +7,20 @@ app.service('ChartService',function(){
         data: {
             labels: ["THP without SS", "THP with SS", "Tax Saving", "Salary Sacrifice"],
             datasets: [{
-                // label: '# of Votes',
+
+                // label: 'Salary Sacrifice Optimistaion',
                 data: [thpWithoutSS,thpWithSS,taxSaving,optimisedSS],
                 backgroundColor: [
                     'blue',
                     'crimson',
-                    'green',
-                    'cornflowerblue',
-                    // 'rgba(153, 102, 255, 0.2)',
-                    // 'rgba(255, 159, 64, 0.2)'
+                    'greenyellow',
+                    'cornflowerblue'
                 ],
                 borderColor: [
                     '#cccccc',
                     '#cccccc',
                     '#cccccc',
-                    '#cccccc',
-                    // 'rgba(153, 102, 255, 1)',
-                    // 'rgba(255, 159, 64, 1)'
+                    '#cccccc'
                 ],
                 borderWidth: 1
             }]
@@ -36,9 +33,29 @@ app.service('ChartService',function(){
                     }
                 }]
             },
+            tooltips:{
+              // tooltipTemplate: "<%if (label){%><%=label %>: <%}%><%= value + ' %' %>",
+            },
+
+            legend : {
+              display:false
+            },
            maintainAspectRatio: true,
-           responsive : true
-        }
+           responsive : true,
+           title:{
+             display:true,
+             text:"Salary Sacrifice Optimisation"
+           },
+           animation :{
+           duration : 1000
+         }
+          //  animation:{
+          //    onComplete:function(){
+          //      alert("gg");
+          //    }
+          //  }
+        },
+        // tooltipTemplate: "<%if (label){%><%=label %>: <%}%><%= value + ' %' %>"
     });
   }
 })
