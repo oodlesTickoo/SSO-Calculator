@@ -54,7 +54,6 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
               var totalTaxPaid=personalTax+contributionTax;
 
               if(totalTaxPaid < taxWithoutSS && totalTaxPaid < minTax){
-                console.log("tax paid", totalTaxPaid);
                 minTax = totalTaxPaid;
                 optimisedSS = additionalConcessionalContribution;
                 optimisedTakeHomePay = takehomePay;

@@ -1,4 +1,4 @@
-app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator',function($scope,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator){
+app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService',function($scope,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService){
 
   // $scope.rate = SGCRate.calculateSGCRate(new Date(2011,11,11));
 
@@ -150,12 +150,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         $scope.optimisedSS = $scope.resultWithSS[3];
         $scope.unattainableTHP = $scope.resultWithSS[4];
         $scope.attainableTHP = !$scope.unattainableTHP;
-        // console.log($scope.thpWithoutSS);
-        // console.log($scope.taxWithoutSS);
-        // console.log($scope.thpWithSS);
-        // console.log($scope.taxWithSS);
-        // console.log($scope.finalAmountWithSS);
-        // console.log($scope.finalSS);
+        ChartService.createChart($scope.thpWithoutSS,$scope.thpWithSS,$scope.taxWithoutSS - $scope.taxWithSS, $scope.optimisedSS);
         console.log("complete");
       }else{
         console.log("has errors");

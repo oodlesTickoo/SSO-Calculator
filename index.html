@@ -224,6 +224,7 @@
                   * Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
                 </div>
               </div>
+              <canvas id="myChart" width="400" height="300" style="display:none;"></canvas>
                <div class="row">
                   <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
                </div>
@@ -248,6 +249,7 @@
             </div>
           </div>
       </div>
+
       <script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
       <script src="js/angular.min.js" type="text/javascript"></script>
       <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
@@ -261,6 +263,8 @@
       <script src="js/WithoutSSCalculatorService.js" type="text/javascript"></script>
       <script src="js/WithSSCalculatorService.js" type="text/javascript"></script>
       <script src="bower_components/angularPrint/angularPrint.js" type="text/javascript"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js"></script>
+      <script src="js/ChartService.js" type="text/javascript"></script>
       <script>
       $(document).ready(function() {
       $('.selectpicker').selectpicker({
