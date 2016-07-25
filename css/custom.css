@@ -4,13 +4,14 @@
 	    border: 1px solid #e2e2e2;
 	    font-size: 12px;
 	    line-height: normal;
+			margin-top:20px;
 }
 .otrp-clear
 {
 	clear: both;
 }
 .title{
-    padding: 17px 0px;
+    padding: 11px 0px;
     position: relative;
     z-index: 1;
     background-color: white;
@@ -319,12 +320,14 @@ input[type=number] {
     margin-left: -10px;
     margin-right: 10px;
     max-width:600px;
+		margin-top:20px;
 }
 .closeInfo{
     background: url("../images/infoboxclose.png") no-repeat;
     width: 25px;
     height: 25px;
     border:0;
+		float : right;
 }
 .info-title{
     margin-top: 15px;
