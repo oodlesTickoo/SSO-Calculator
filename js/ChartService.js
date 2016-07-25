@@ -34,8 +34,14 @@ app.service('ChartService',function(){
                 }]
             },
             tooltips:{
+              callbacks: {
+                    label: function(tooltipItems, data) {
+                      // console.log(typeOf(tooltipItems.yLabel));
+                        return  '$ ' + tooltipItems.yLabel.toFixed(2);
+                    }
               // tooltipTemplate: "<%if (label){%><%=label %>: <%}%><%= value + ' %' %>",
-            },
+            }
+          },
 
             legend : {
               display:false
