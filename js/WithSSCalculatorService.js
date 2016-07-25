@@ -64,7 +64,11 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
             }
           }
 
+          if(unattainableTHP){
+          return [0,0,0,0,unattainableTHP];
+        }else{
           return [optimisedTakeHomePay,minTax,finalAmountWithSS,optimisedSS,unattainableTHP];
+        }
 
 
       };
