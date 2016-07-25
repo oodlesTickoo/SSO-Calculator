@@ -25,7 +25,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
             var grossAnnualIncomebeforeSGC=excludeSGC;
 
-            var minTax = taxWithoutSS;
+            var minTax = excludeSGC;
 
             // var taxSaving = 0;
 
@@ -53,7 +53,8 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
               var finalAmount=takehomePay+boostUpSuperBalanceBy;
               var totalTaxPaid=personalTax+contributionTax;
 
-              if(totalTaxPaid < taxWithoutSS && totalTaxPaid < minTax){
+              // if(totalTaxPaid < taxWithoutSS && totalTaxPaid < minTax){
+              if(totalTaxPaid < minTax){
                 minTax = totalTaxPaid;
                 optimisedSS = additionalConcessionalContribution;
                 optimisedTakeHomePay = takehomePay;
