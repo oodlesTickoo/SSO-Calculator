@@ -29,7 +29,14 @@ app.service('ChartService',function(){
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:true,
+                        callback: function(value, index, values) {
+                        return "$ " + value.toFixed(2);
+                    }
+                    },
+                    scaleLabel: {
+                        // display: true,
+                        // labelString: 'probability'
                     }
                 }]
             },
@@ -39,7 +46,6 @@ app.service('ChartService',function(){
                       // console.log(typeOf(tooltipItems.yLabel));
                         return  '$ ' + tooltipItems.yLabel.toFixed(2);
                     }
-              // tooltipTemplate: "<%if (label){%><%=label %>: <%}%><%= value + ' %' %>",
             }
           },
 
