@@ -150,11 +150,18 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         $scope.optimisedSS = $scope.resultWithSS[3];
         $scope.unattainableTHP = $scope.resultWithSS[4];
         $scope.attainableTHP = !$scope.unattainableTHP;
-        if($scope.attainableTHP){
-        ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
-      }
+        if($scope.attainableTHP){  
+          ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
+        }
+        else{
+          if(window.myChar !== undefined){
+            myChar.destroy();
+            document.getElementById("myChart").style.display="none";
+          }
+        }
         console.log("complete");
-      }else{
+      }
+      else{
         console.log("has errors");
       }
     }
