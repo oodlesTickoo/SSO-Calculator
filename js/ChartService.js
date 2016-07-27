@@ -2,7 +2,10 @@ app.service('ChartService',function(){
   this.createChart = function(thpWithoutSS,thpWithSS,taxSaving,optimisedSS){
     document.getElementById("myChart").style.display="block";
     var ctx = $("#myChart");
-    var myChart = new Chart(ctx, {
+    if(window.myChar !== undefined){
+    myChar.destroy();
+  }
+    window.myChar = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ["THP without SS", "THP with SS", "Tax Saving", "Salary Sacrifice"],
@@ -29,7 +32,18 @@ app.service('ChartService',function(){
             scales: {
                 yAxes: [{
                     ticks: {
-                        beginAtZero:true
+                        beginAtZero:true,
+                        callback: function(value, index, values) {
+                          if(value){
+                        return "$ " + value/1000 + "k";
+                      }else{
+                        return "$ " + value;
+                      }
+                    }
+                    },
+                    scaleLabel: {
+                        // display: true,
+                        // labelString: 'probability'
                     }
                 }]
             },
@@ -39,7 +53,6 @@ app.service('ChartService',function(){
                       // console.log(typeOf(tooltipItems.yLabel));
                         return  '$ ' + tooltipItems.yLabel.toFixed(2);
                     }
-              // tooltipTemplate: "<%if (label){%><%=label %>: <%}%><%= value + ' %' %>",
             }
           },
 
