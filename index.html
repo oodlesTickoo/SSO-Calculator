@@ -20,13 +20,13 @@
             </div>
             <div print-hide class="button-wrapper col-xs-1 col-sm-1 col-lg-1">
                <button type="button" class="button info-icon" ng-click="infoShow(true)" title="Information"></button>
-               </div>
-               <div print-hide class="button-wrapper col-xs-1 col-sm-1 col-lg-1">
+            </div>
+            <div print-hide class="button-wrapper col-xs-1 col-sm-1 col-lg-1">
                <button type="button" class="button email-icon" title="Email" role="button" aria-controls="email-overlay"></button>
-               </div>
-               <div print-hide class="button-wrapper col-xs-1 col-sm-1 col-lg-1">
+            </div>
+            <div print-hide class="button-wrapper col-xs-1 col-sm-1 col-lg-1">
                <button type="button" class="button print-icon" onclick="window.print()"></button>
-               </div>
+            </div>
          </div>
          <div class="row content" >
             <div class="col-xs-12 col-sm-12 col-lg-12">
@@ -77,9 +77,9 @@
                            </div> -->
                         <div class="row">
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                             <div class="row ttr-label">
-                              <label style="display:block" class="standard-label">Beginning of the Financial Year</label>
-                            </div>
+                              <div class="row ttr-label">
+                                 <label style="display:block" class="standard-label">Beginning of the Financial Year</label>
+                              </div>
                               <div class="row ttr-note">Please use 1 July of a particular Financial Year Here</div>
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
@@ -108,7 +108,7 @@
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                              <!-- <div class="err-msg" ng-show="(ttrForm.beforeTTR.$error.required && !ttrForm.beforeTTR.$pristine) ||  (ttrForm.beforeTTR.$error.required && ttrForm.beforeTTR.$touched) || (ttrForm.beforeTTR.$invalid && !ttrForm.beforeTTR.$pristine)">Enter Valid Numeric Value</div> -->
+                           <!-- <div class="err-msg" ng-show="(ttrForm.beforeTTR.$error.required && !ttrForm.beforeTTR.$pristine) ||  (ttrForm.beforeTTR.$error.required && ttrForm.beforeTTR.$touched) || (ttrForm.beforeTTR.$invalid && !ttrForm.beforeTTR.$pristine)">Enter Valid Numeric Value</div> -->
                            <!-- </div> -->
                         </div>
                         <hr class="submit-hr"/>
@@ -123,7 +123,7 @@
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
-                              <!-- <div class="err-msg" ng-show="(ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)">Enter Valid Numeric Value</div> -->
+                           <!-- <div class="err-msg" ng-show="(ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)">Enter Valid Numeric Value</div> -->
                            <!-- </div> -->
                         </div>
                         <hr class="submit-hr"  print-remove />
@@ -132,8 +132,8 @@
                               <button type="submit" class="btn btn-primary submit-btn" ng-disabled="ttrForm.$invalid">Calculate </button>
                            </div>
                            <!-- <div ng-show="ttrForm.$invalid && !ttrForm.$pristine" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                            Form contains erronous inputs. Please correct to Submit.
-                           </div> -->
+                              Form contains erronous inputs. Please correct to Submit.
+                              </div> -->
                         </div>
                      </form>
                   </div>
@@ -189,9 +189,10 @@
                      <hr class="submit-hr"/>
                      <div class="row content-result">
                         <div class="option col-xs-3 col-sm-3 col-lg-3">
-                           <div><p>Final Amount</p>
-                           <!-- <p> (Take Home Payment + Increase in Super)</p> -->
-                         </div>
+                           <div>
+                              <p>Final Amount</p>
+                              <!-- <p> (Take Home Payment + Increase in Super)</p> -->
+                           </div>
                         </div>
                         <div class="option col-xs-3 col-sm-3 col-lg-3 option-indent">
                            <div>{{ resultWithoutSS[2] | currency }}</div>
@@ -214,42 +215,52 @@
                         </div> -->
                   </div>
                </div>
-               <div class="row unattainable-thp-error" ng-show="unattainableTHP">
-                 <div class="col-xs-12">
-                   * No Salary Sacrifice value meets your minimum take home requirements.
-                 </div>
+               <div class="row result-head" ng-show="unattainableTHP || attainableTHP">
+                  <h3 class="results-title">Strategy</h3>
                </div>
-               <div class="row attainable-thp" ng-show="attainableTHP">
-                <div class="col-xs-12">
-                  * Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
-                </div>
-              </div>
-              <canvas id="myChart" width="400" height="300" style="display:none;"></canvas>
+               <div class="row result-div" ng-show="unattainableTHP || attainableTHP">
+                  <div class="col-xs-12">
+                    <div class="row unattainable-thp-error" ng-show="unattainableTHP">
+                      <div class="col-xs-12">
+                        <p class="strategy">
+                          No Salary Sacrifice value meets your minimum take home requirements. Please change the input value.
+                        </p>                         
+                      </div>
+                   </div>
+                   <div class="row attainable-thp" ng-show="attainableTHP">
+                      <div class="col-xs-12">
+                        <p class="strategy">
+                          Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
+                        </p>                         
+                      </div>
+                   </div>
+                  </div>                  
+               </div>
+               <canvas id="myChart" width="400" height="300" style="display:none;"></canvas>
                <div class="row">
                   <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
                </div>
             </div>
          </div>
-          <div class="row information-overlay" print-hide>
+         <div class="row information-overlay" print-hide>
             <div class="col-xs-12 col-sm-12 col-lg-12 ">
-              <div class="row info-title">
+               <div class="row info-title">
                   <div class="col-xs-9 col-sm-9 col-lg-9">
-                    <h2>Calculator Information</h2>
+                     <h2>Calculator Information</h2>
                   </div>
                   <div class="col-xs-3 col-sm-3 col-lg-3">
-                    <button type="button" class="closeInfo" ng-click="infoShow(false)"></button>
+                     <button type="button" class="closeInfo" ng-click="infoShow(false)"></button>
                   </div>
-              </div>
-              <hr class="submit-hr"/>
-              <div class="row info-content">
-                <div class="col-xs-12 col-sm-12 col-lg-12">
-                  <p>The Budget planner provides you with a detailed breakdown of your finances. Move through the planner by clicking the tabs relating to the area of interest. None of the fields entered are compulsory so you can use some or all of it.</p>
-                </div>
-              </div>
+               </div>
+               <hr class="submit-hr"/>
+               <div class="row info-content">
+                  <div class="col-xs-12 col-sm-12 col-lg-12">
+                     <p>The Budget planner provides you with a detailed breakdown of your finances. Move through the planner by clicking the tabs relating to the area of interest. None of the fields entered are compulsory so you can use some or all of it.</p>
+                  </div>
+               </div>
             </div>
-          </div>
+         </div>
       </div>
-
       <script src="js/jquery-2.2.4.min.js" type="text/javascript"></script>
       <script src="js/angular.min.js" type="text/javascript"></script>
       <script src="js/bootstrap-select.min.js" type="text/javascript"></script>
@@ -266,12 +277,12 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.6/Chart.min.js"></script>
       <script src="js/ChartService.js" type="text/javascript"></script>
       <script>
-      $(document).ready(function() {
-      $('.selectpicker').selectpicker({
-          style: 'btn-default',
-          size: 5
-      });
-  });
+         $(document).ready(function() {
+         $('.selectpicker').selectpicker({
+             style: 'btn-default',
+             size: 5
+         });
+         });
       </script>
    </body>
 </html>
