@@ -124,9 +124,9 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
       return '';
     }
 
-    $scope.getAge = function(){
-      $scope.age = AgeCalculator.getAge($scope.dob);
-    }
+    // $scope.getAge = function(){
+    //   $scope.age = AgeCalculator.getAge($scope.dob);
+    // }
 
     $scope.Math = window.Math;
 
