@@ -2,7 +2,10 @@ app.service('ChartService',function(){
   this.createChart = function(thpWithoutSS,thpWithSS,taxSaving,optimisedSS){
     document.getElementById("myChart").style.display="block";
     var ctx = $("#myChart");
-    var myChart = new Chart(ctx, {
+    if(window.myChar !== undefined){
+    myChar.destroy();
+  }
+    window.myChar = new Chart(ctx, {
         type: 'bar',
         data: {
             labels: ["THP without SS", "THP with SS", "Tax Saving", "Salary Sacrifice"],
@@ -31,7 +34,11 @@ app.service('ChartService',function(){
                     ticks: {
                         beginAtZero:true,
                         callback: function(value, index, values) {
-                        return "$ " + value.toFixed(2);
+                          if(value){
+                        return "$ " + value/1000 + "k";
+                      }else{
+                        return "$ " + value;
+                      }
                     }
                     },
                     scaleLabel: {
