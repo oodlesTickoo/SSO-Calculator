@@ -130,18 +130,24 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
     $scope.Math = window.Math;
 
+    $scope.calculationsDone = false;
+
     $scope.unattainableTHP = false;
 
     $scope.attainableTHP = false;
+
+    $scope.unattainableTHPS = false;
 
     $scope.optimisedSS;
 
     $scope.submitForm = function(isValid){
       if(isValid){
+        $scope.calculationsDone = true;
         $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target);
         $scope.thpWithoutSS = $scope.resultWithoutSS[0];
         $scope.taxWithoutSS = $scope.resultWithoutSS[1];
         $scope.finalAmountWithoutSS = $scope.resultWithoutSS[2];
+        $scope.unattainableTHPS = $scope.resultWithoutSS[3];
         $scope.resultWithSS = WithSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,$scope.taxWithoutSS);
         $scope.thpWithSS = $scope.resultWithSS[0];
         $scope.taxWithSS = $scope.resultWithSS[1];
@@ -150,7 +156,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         $scope.optimisedSS = $scope.resultWithSS[3];
         $scope.unattainableTHP = $scope.resultWithSS[4];
         $scope.attainableTHP = !$scope.unattainableTHP;
-        if($scope.attainableTHP){  
+        if($scope.attainableTHP && !$scope.unattainableTHPS){
           ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
         }
         else{
