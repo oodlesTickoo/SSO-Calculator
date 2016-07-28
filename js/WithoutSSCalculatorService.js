@@ -22,9 +22,13 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator
             var boostUpSuperBalanceBy=concessionalContribution-contributionTax;
             var finalAmount=takehomePay+boostUpSuperBalanceBy;
             var ttakehomePay=personalTax+contributionTax;
-            console.log(personalTax);
-            console.log(contributionTax);
-            return [takehomePay,ttakehomePay,finalAmount];
+
+            var unattainableTHPS = takehomePay < minTakeHomePay;
+            if(unattainableTHPS){
+            return [0,0,0,unattainableTHPS];
+          }else{
+            return [takehomePay,ttakehomePay,finalAmount,unattainableTHPS];
+          }
       };
 
 }]);

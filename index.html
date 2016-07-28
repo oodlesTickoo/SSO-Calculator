@@ -102,9 +102,9 @@
                               <label class="standard-label">Annual salary exclude SGC<span class="required">*</span></label>
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.excludeSGC.$error.required && !ttrForm.excludeSGC.$pristine) ||  (ttrForm.excludeSGC.$error.required && ttrForm.excludeSGC.$touched) || (ttrForm.beforeTTR.$invalid && !ttrForm.beforeTTR.$pristine)}">
+                              <div class="input-group" ng-class="{'err-border' : (ttrForm.excludeSGC.$error.required && !ttrForm.excludeSGC.$pristine) ||  (ttrForm.excludeSGC.$error.required && ttrForm.excludeSGC.$touched) || (ttrForm.excludeSGC.$invalid && !ttrForm.excludeSGC.$pristine)}">
                                  <span class="input-group-addon">$</span>
-                                 <input type="number" name="excludeSGC" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="excludeSGC" value={{excludeSGC}} required />
+                                 <input type="number"  name="excludeSGC" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="excludeSGC" required />
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
@@ -129,7 +129,7 @@
                         <hr class="submit-hr"  print-remove />
                         <div class="row"  print-remove >
                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                              <button type="submit" class="btn btn-primary submit-btn" ng-disabled="ttrForm.$invalid">Calculate </button>
+                              <button type="submit" class="btn btn-primary submit-btn" ng-disabled="ttrForm.excludeSGC.$pristine || ttrForm.target.$pristine || ttrForm.$invalid">Calculate </button>
                            </div>
                            <!-- <div ng-show="ttrForm.$invalid && !ttrForm.$pristine" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               Form contains erronous inputs. Please correct to Submit.
@@ -141,7 +141,7 @@
                <div class="row result-head">
                   <h3 class="results-title">Your results</h3>
                </div>
-               <div class="row result-div">
+               <div class="row result-div" ng-show="!unattainableTHPS || attainableTHP">
                   <div class="col-xs-12 col-sm-12 col-lg-12">
                      <div class="row content-result result-subheadings">
                         <div class="option col-xs-3 col-sm-3 col-lg-3">
@@ -215,26 +215,33 @@
                         </div> -->
                   </div>
                </div>
-               <div class="row result-head" ng-show="unattainableTHP || attainableTHP">
+               <div class="row result-head" ng-show="attainableTHP || !unattainableTHPS">
                   <h3 class="results-title">Strategy</h3>
                </div>
-               <div class="row result-div" ng-show="unattainableTHP || attainableTHP">
+               <div class="row result-div">
                   <div class="col-xs-12">
-                    <div class="row unattainable-thp-error" ng-show="unattainableTHP">
+                    <div class="row unattainable-thp-error" ng-show="unattainableTHP && !unattainableTHPS">
                       <div class="col-xs-12">
                         <p class="strategy">
-                          No Salary Sacrifice value meets your minimum take home requirements. Please change the input value.
-                        </p>                         
+                          No Salary Sacrifice value meets your minimum take home requirements. Please try changing the input values.
+                        </p>
                       </div>
                    </div>
-                   <div class="row attainable-thp" ng-show="attainableTHP">
+                   <div class="row attainable-thp" ng-show="attainableTHP && !unattainableTHPS">
                       <div class="col-xs-12">
                         <p class="strategy">
                           Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
-                        </p>                         
+                        </p>
                       </div>
                    </div>
-                  </div>                  
+                   <div class="row attainable-thp" ng-show="unattainableTHP && unattainableTHPS">
+                      <div class="col-xs-12">
+                        <p class="strategy">
+                          Your Take Home Payment is not guaranteed with/without a Salary Sacrifice.Please try changing the input values.
+                        </p>
+                      </div>
+                   </div>
+                  </div>
                </div>
                <canvas id="myChart" width="400" height="300" style="display:none;"></canvas>
                <div class="row">
