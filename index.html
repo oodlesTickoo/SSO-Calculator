@@ -102,9 +102,9 @@
                               <label class="standard-label">Annual salary exclude SGC<span class="required">*</span></label>
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.excludeSGC.$error.required && !ttrForm.excludeSGC.$pristine) ||  (ttrForm.excludeSGC.$error.required && ttrForm.excludeSGC.$touched) || (ttrForm.excludeSGC.$invalid && !ttrForm.excludeSGC.$pristine)}">
+                              <div class="input-group" ng-class="{'err-border' : (ttrForm.excludeSGC.$error.required && !ttrForm.excludeSGC.$pristine) ||  (ttrForm.excludeSGC.$error.required && ttrForm.excludeSGC.$touched)}">
                                  <span class="input-group-addon">$</span>
-                                 <input type="number"  name="excludeSGC" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="excludeSGC" required />
+                                 <input type="number"  name="excludeSGC" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="excludeSGC" min="1" required />
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
@@ -117,9 +117,9 @@
                               <label class="standard-label">Desired Minimum Take Home Salary Per Annum<span class="required">*</span></label>
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)}">
+                              <div class="input-group" ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched)}">
                                  <span class="input-group-addon">$</span>
-                                 <input type="number" name="target" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="target" required>
+                                 <input type="number" name="target" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="target" min="1" required>
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
@@ -215,26 +215,26 @@
                         </div> -->
                   </div>
                </div>
-               <div class="row result-head" ng-show="attainableTHP || !unattainableTHPS">
+               <div class="row result-head" ng-show="(!unattainableTHP || !unattainableTHPS) && calculationsDone">
                   <h3 class="results-title">Strategy</h3>
                </div>
                <div class="row result-div">
                   <div class="col-xs-12">
-                    <div class="row unattainable-thp-error" ng-show="unattainableTHP && !unattainableTHPS">
+                    <div class="row unattainable-thp-error" ng-show="(unattainableTHP && !unattainableTHPS) && calculationsDone">
                       <div class="col-xs-12">
                         <p class="strategy">
                           No Salary Sacrifice value meets your minimum take home requirements. Please try changing the input values.
                         </p>
                       </div>
                    </div>
-                   <div class="row attainable-thp" ng-show="attainableTHP && !unattainableTHPS">
+                   <div class="row attainable-thp" ng-show="(!unattainableTHP) && calculationsDone">
                       <div class="col-xs-12">
                         <p class="strategy">
                           Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
                         </p>
                       </div>
                    </div>
-                   <div class="row attainable-thp" ng-show="unattainableTHP && unattainableTHPS">
+                   <div class="row attainable-thp" ng-show="(unattainableTHP && unattainableTHPS) && calculationsDone">
                       <div class="col-xs-12">
                         <p class="strategy">
                           Your Take Home Payment is not guaranteed with/without a Salary Sacrifice.Please try changing the input values.

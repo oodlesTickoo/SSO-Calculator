@@ -130,6 +130,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
     $scope.Math = window.Math;
 
+    $scope.calculationsDone = false;
+
     $scope.unattainableTHP = false;
 
     $scope.attainableTHP = false;
@@ -140,6 +142,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
     $scope.submitForm = function(isValid){
       if(isValid){
+        $scope.calculationsDone = true;
         $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target);
         $scope.thpWithoutSS = $scope.resultWithoutSS[0];
         $scope.taxWithoutSS = $scope.resultWithoutSS[1];
