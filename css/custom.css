@@ -213,7 +213,7 @@ hr{
 .submit-btn{
 	margin-bottom:10px;
 	display:block;
-	margin:auto
+	margin:auto;
 }
 
 form.ttr-form{
@@ -243,7 +243,7 @@ span.pension-note{
 }
 
 .ttr-note{
-	color: cornflowerblue;
+	color: #88C2E8;
 	padding: 0px !important;
 	padding-left: 15px !important;
 	font-size: 10px;
@@ -378,10 +378,11 @@ input[type=number] {
 .cta > div {
         padding-right: 0;
 }
-.btn-default{
+.get-in-touch{
     background-color: #88C2E8 !important;
-    color: #fff;
+    color: #fff !important;
     border-radius: 0;
+    border:0px;
 }
 .comp-logo{
     float:right;
