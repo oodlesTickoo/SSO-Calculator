@@ -129,7 +129,7 @@
                         <hr class="submit-hr"  print-remove />
                         <div class="row"  print-remove >
                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                              <button type="submit" class="btn btn-primary submit-btn" ng-disabled="ttrForm.excludeSGC.$pristine || ttrForm.target.$pristine || ttrForm.$invalid">Calculate </button>
+                              <button type="submit" class="btn btn-default submit-btn" ng-disabled="ttrForm.excludeSGC.$pristine || ttrForm.target.$pristine || ttrForm.$invalid">Calculate </button>
                            </div>
                            <!-- <div ng-show="ttrForm.$invalid && !ttrForm.$pristine" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               Form contains erronous inputs. Please correct to Submit.
@@ -243,9 +243,19 @@
                    </div>
                   </div>
                </div>
-               <canvas id="myChart" width="400" height="300" style="display:none;"></canvas>
-               <div class="row">
+               <canvas id="myChart" width="400" height="300" style="display:none; height:300px !important;"></canvas>
+               <div class="row cta">
+                  <div class="col-xs-12">
+                    <p>Need to know more <a class="btn btn-default">Get in touch</a></p>
+                  </div>
+               </div>
+               <div class="row disclaimer">
                   <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
+               </div>
+               <div class="row">
+                <div class="col-xs-12">
+                  <img src="images/client-logo.png" class="comp-logo"/>
+                </div>
                </div>
             </div>
          </div>
