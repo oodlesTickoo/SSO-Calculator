@@ -52,6 +52,20 @@ app.service('ChartService',function(){
                     label: function(tooltipItems, data) {
                       // console.log(typeOf(tooltipItems.yLabel));
                         return  '$ ' + tooltipItems.yLabel.toFixed(2);
+                    },
+                    title: function(tooltipItems, data) {
+                      if(tooltipItems[0].xLabel.includes("without")){
+                       return "Take Home Payment Without Salary Sacrifice";
+                      }
+                      if(tooltipItems[0].xLabel.includes("with")){
+                       return "Take Home Payment With Salary Sacrifice";
+                      }
+                      if(tooltipItems[0].xLabel.includes("Saving")){
+                       return "Tax Savings";
+                      }
+                      if(tooltipItems[0].xLabel.includes("Sacrifice")){
+                       return "Salary Sacrifice";
+                      }
                     }
             }
           },
