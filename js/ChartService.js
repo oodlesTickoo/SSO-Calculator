@@ -14,10 +14,10 @@ app.service('ChartService',function(){
                 // label: 'Salary Sacrifice Optimistaion',
                 data: [thpWithoutSS,thpWithSS,taxSaving,optimisedSS],
                 backgroundColor: [
-                    'blue',
-                    'crimson',
-                    'greenyellow',
-                    'cornflowerblue'
+                    '#8DC6F7',
+                    '#3F4247',
+                    '#7CD869',
+                    '#E5A45B'
                 ],
                 borderColor: [
                     '#cccccc',
