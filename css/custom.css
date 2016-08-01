@@ -28,20 +28,20 @@
 }
 .info-icon{
     background:  url("../images/info-icon.png") no-repeat;
-    background-color: #87c03d !important;
+    background-color: #88C2E8 !important;
         width: 26px;
     height: 26px;
 }
 .email-icon{
 	  margin-top:2px;
     background: url("../images/email-icon.png") no-repeat;
-    background-color: #87c03d !important;
+    background-color: #88C2E8 !important;
         width: 26px;
     height: 21px;
 }
 .print-icon{
     background: url("../images/printer-icon.png") no-repeat;
-    background-color: #87c03d !important;
+    background-color: #88C2E8 !important;
         width: 25px;
     height: 29px;
 }
@@ -360,6 +360,31 @@ input[type=number] {
     font-size: 1.5em; 
     text-align: center;
     padding: 20px 20px;
+}
+.cta{
+    padding: 10px;
+    border-top:solid 1px #CCCCCC;
+    border-bottom:solid 1px #CCCCCC;
+}
+.cta p{
+    font-weight: bold;
+    font-size: 15px;
+    float: right;
+    margin:0;
+}
+.cta a{
+        margin: 0 0 0 10px;
+}
+.cta > div {
+        padding-right: 0;
+}
+.btn-default{
+    background-color: #88C2E8 !important;
+    color: #fff;
+    border-radius: 0;
+}
+.comp-logo{
+    float:right;
 }
 @media only screen
   /*and (min-device-width: 320px)*/
