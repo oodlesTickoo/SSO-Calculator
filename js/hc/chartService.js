@@ -13,7 +13,10 @@ app.service('ChartServiceHc',function(){
         //     text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
         // },
         xAxis: {
-            type: 'category'
+            type: 'category',
+            labels:{
+                autoRotation : false,
+            }
         },
         yAxis: {
             title: {
@@ -35,37 +38,29 @@ app.service('ChartServiceHc',function(){
         },
 
         tooltip: {
-            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
-            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+            headerFormat: '<span style="color:{point.color}">{point.key}</span><br>',
+            pointFormat: '$ <b>{point.y:.2f}</b><br/>'
         },
 
         series: [{
-            name: 'Brands',
+            // name: 'Brands',
             colorByPoint: true,
             data: [{
-                name: 'Microsoft Internet Explorer',
-                y: 56.33,
+                name: 'Take Home Pay Without Salary Sacrifice',
+                y: thpWithoutSS,
                 // drilldown: 'Microsoft Internet Explorer'
             }, {
-                name: 'Chrome',
-                y: 24.03,
+                name: 'Take Home Pay With Salary Sacrifice',
+                y: thpWithSS,
                 // drilldown: 'Chrome'
             }, {
-                name: 'Firefox',
-                y: 10.38,
+                name: 'Tax Saving',
+                y: taxSaving,
                 // drilldown: 'Firefox'
             }, {
-                name: 'Safari',
-                y: 4.77,
+                name: 'Salary Sacrifice',
+                y: optimisedSS,
                 // drilldown: 'Safari'
-            }, {
-                name: 'Opera',
-                y: 0.91,
-                // drilldown: 'Opera'
-            }, {
-                name: 'Proprietary or Undetectable',
-                y: 0.2,
-                // drilldown: null
             }]
         }],
         // drilldown: {

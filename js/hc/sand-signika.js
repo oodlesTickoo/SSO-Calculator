@@ -5,7 +5,8 @@
 
 // Load the fonts
 Highcharts.createElement('link', {
-	href: 'https://fonts.googleapis.com/css?family=Signika:400,700',
+	// href: 'https://fonts.googleapis.com/css?family=Signika:400,700',
+	href: 'https://fonts.googleapis.com/css?family=Unica+One',
 	rel: 'stylesheet',
 	type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);
@@ -23,14 +24,22 @@ Highcharts.theme = {
 	chart: {
 		backgroundColor: null,
 		style: {
-			fontFamily: "Signika, serif"
+			// fontFamily: "Signika, serif"
+			fontFamily: "'Unica One', sans-serif"
 		}
 	},
+	// title: {
+	// 	style: {
+	// 		color: 'black',
+	// 		fontSize: '16px',
+	// 		fontWeight: 'bold'
+	// 	}
+	// },
 	title: {
 		style: {
-			color: 'black',
-			fontSize: '16px',
-			fontWeight: 'bold'
+			color: '#000',
+			textTransform: 'uppercase',
+			fontSize: '20px'
 		}
 	},
 	subtitle: {
@@ -47,17 +56,51 @@ Highcharts.theme = {
 			fontSize: '13px'
 		}
 	},
+	// xAxis: {
+	// 	labels: {
+	// 		style: {
+	// 			color: '#6e6e70'
+	// 		}
+	// 	}
+	// },
+	// yAxis: {
+	// 	labels: {
+	// 		style: {
+	// 			color: '#6e6e70'
+	// 		}
+	// 	}
+	// },
 	xAxis: {
+		gridLineColor: '#707073',
 		labels: {
 			style: {
-				color: '#6e6e70'
+				color: '#000'
+			}
+		},
+		lineColor: '#707073',
+		minorGridLineColor: '#505053',
+		tickColor: '#707073',
+		title: {
+			style: {
+				color: '#A0A0A3'
+
 			}
 		}
 	},
 	yAxis: {
+		gridLineColor: '#707073',
 		labels: {
 			style: {
-				color: '#6e6e70'
+				color: '#000'
+			}
+		},
+		lineColor: '#707073',
+		minorGridLineColor: '#505053',
+		tickColor: '#707073',
+		tickWidth: 1,
+		title: {
+			style: {
+				color: '#000'
 			}
 		}
 	},
