@@ -20,7 +20,7 @@ app.service('ChartServiceHc',function(){
         },
         yAxis: {
             title: {
-                text: 'Total percent market share'
+                text: 'Amount ($)'
             }
 
         },
@@ -30,10 +30,10 @@ app.service('ChartServiceHc',function(){
         plotOptions: {
             series: {
                 borderWidth: 0,
-                dataLabels: {
-                    enabled: true,
-                    format: '{point.y:.1f}%'
-                }
+                // dataLabels: {
+                //     enabled: true,
+                //     format: '{point.y:.1f}%'
+                // }
             }
         },
 

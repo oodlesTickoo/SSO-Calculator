@@ -12,10 +12,10 @@ Highcharts.createElement('link', {
 }, null, document.getElementsByTagName('head')[0]);
 
 // Add the background image to the container
-Highcharts.wrap(Highcharts.Chart.prototype, 'getContainer', function (proceed) {
-	proceed.call(this);
-	this.container.style.background = 'url(http://www.highcharts.com/samples/graphics/sand.png)';
-});
+// Highcharts.wrap(Highcharts.Chart.prototype, 'getContainer', function (proceed) {
+// 	proceed.call(this);
+// 	this.container.style.background = 'url(http://www.highcharts.com/samples/graphics/sand.png)';
+// });
 
 
 Highcharts.theme = {
