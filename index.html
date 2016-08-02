@@ -141,7 +141,54 @@
                <div class="row result-head">
                   <h3 class="results-title">Your Results</h3>
                </div>
-               <div class="row result-div" ng-show="!unattainableTHPS || attainableTHP">
+               <div class="row result-div">
+                 <div class="col-xs-12 col-sm-7 col-md-7">
+                   <canvas id="myChart" width="400" height="300" style="display:none; height:300px !important;margin-bottom:15px;"></canvas>
+                 </div>
+                 <div class="col-xs-12 col-sm-5 col-md-5">
+                   <div class="row res-1">
+                     <div class="col-xs-12">
+                       <div class="row"><strong>With SS it will save you</strong></div>
+                       <div class="row res-diff">{{ resultWithoutSS[2] -resultWithSS[2] | currency }}</div>
+                     </div>
+                   </div>
+                   <div class="row res-2" >
+                     <div class="col-xs-12">
+                        <div class="row res-head"><strong>Your take home money</strong></div>
+                        <div class="row">
+                          <div class="col-xs-6">Without SS</div>
+                          <div class="col-xs-6 res-value" >{{ resultWithoutSS[0] | currency }}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-6">With SS</div>
+                          <div class="col-xs-6 res-value">{{ resultWithSS[0] | currency }}</div>
+                        </div>
+                        <div class="row divider"></div>
+                        <div class="row res-head"><strong>Total tax paid</strong></div>
+                        <div class="row">
+                          <div class="col-xs-6">Without SS</div>
+                          <div class="col-xs-6 res-value">{{ resultWithoutSS[1] | currency }}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-6">With SS</div>
+                          <div class="col-xs-6 res-value">{{ resultWithSS[1] | currency }}</div>
+                        </div>
+                        <div class="row divider">
+                        </div>                        
+                        <div class="row res-head"><strong>Final amount</strong></div>
+                        <div class="row">
+                          <div class="col-xs-6">Without SS</div>
+                          <div class="col-xs-6 res-value">{{ resultWithoutSS[2] | currency }}</div>
+                        </div>
+                        <div class="row">
+                          <div class="col-xs-6">With SS</div>
+                          <div class="col-xs-6 res-value">{{ resultWithSS[2] | currency }}</div>
+                        </div>
+                     </div>
+                   </div>
+                 </div>
+               </div>
+               <!-- <div class="row result-div" ng-show="!unattainableTHPS || attainableTHP">
                   <div class="col-xs-12 col-sm-12 col-lg-12">
                      <div class="row content-result result-subheadings">
                         <div class="option col-xs-3 col-sm-3 col-lg-3">
@@ -191,7 +238,7 @@
                         <div class="option col-xs-3 col-sm-3 col-lg-3">
                            <div>
                               <p>Final Amount</p>
-                              <!-- <p> (Take Home Payment + Increase in Super)</p> -->
+                              <!-- <p> (Take Home Payment + Increase in Super)</p> 
                            </div>
                         </div>
                         <div class="option col-xs-3 col-sm-3 col-lg-3 option-indent">
@@ -212,50 +259,50 @@
                                     <div class="otrp-clear"></div>
                           </div>
                         </div>
-                        </div> -->
+                        </div> 
                   </div>
-               </div>
+               </div> -->
                <div class="row result-head" ng-show="(!unattainableTHP || !unattainableTHPS) && calculationsDone">
                   <h3 class="results-title">Strategy</h3>
                </div>
                <div class="row result-div">
                   <div class="col-xs-12">
-                    <div class="row unattainable-thp-error" ng-show="(unattainableTHP && !unattainableTHPS) && calculationsDone">
-                      <div class="col-xs-12">
-                        <p class="strategy">
-                          No Salary Sacrifice value meets your minimum take home requirements. Please try changing the input values.
-                        </p>
-                      </div>
-                   </div>
-                   <div class="row attainable-thp" ng-show="(!unattainableTHP) && calculationsDone">
-                      <div class="col-xs-12">
-                        <p class="strategy">
-                          Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
-                        </p>
-                      </div>
-                   </div>
-                   <div class="row attainable-thp" ng-show="(unattainableTHP && unattainableTHPS) && calculationsDone">
-                      <div class="col-xs-12">
-                        <p class="strategy">
-                          Your Take Home Payment is not guaranteed with/without a Salary Sacrifice.Please try changing the input values.
-                        </p>
-                      </div>
-                   </div>
+                     <div class="row unattainable-thp-error" ng-show="(unattainableTHP && !unattainableTHPS) && calculationsDone">
+                        <div class="col-xs-12">
+                           <p class="strategy">
+                              No Salary Sacrifice value meets your minimum take home requirements. Please try changing the input values.
+                           </p>
+                        </div>
+                     </div>
+                     <div class="row attainable-thp" ng-show="(!unattainableTHP) && calculationsDone">
+                        <div class="col-xs-12">
+                           <p class="strategy">
+                              Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
+                           </p>
+                        </div>
+                     </div>
+                     <div class="row attainable-thp" ng-show="(unattainableTHP && unattainableTHPS) && calculationsDone">
+                        <div class="col-xs-12">
+                           <p class="strategy">
+                              Your Take Home Payment is not guaranteed with/without a Salary Sacrifice.Please try changing the input values.
+                           </p>
+                        </div>
+                     </div>
                   </div>
                </div>
                <canvas id="myChart" width="400" height="300" style="display:none; height:300px !important;margin-bottom:15px;"></canvas>
                <div class="row cta">
                   <div class="col-xs-12">
-                    <p>Need to know more <a class="btn btn-default get-in-touch">Get in touch</a></p>
+                     <p>Need to know more <a class="btn btn-default get-in-touch">Get in touch</a></p>
                   </div>
                </div>
                <div class="row disclaimer">
                   <span class="calculator-disclaimer">Information provided by Financial Choice Pty Ltd is general financial advice only. General advice is defined under the new regulations to include information about financial products and financial markets and our current views and outlook for those products and markets. The general advice we provide includes the information you have requested from us directly or via our web site.</span>
                </div>
                <div class="row">
-                <div class="col-xs-12">
-                  <img src="images/client-logo.png" class="comp-logo"/>
-                </div>
+                  <div class="col-xs-12">
+                     <img src="images/client-logo.png" class="comp-logo"/>
+                  </div>
                </div>
             </div>
          </div>
