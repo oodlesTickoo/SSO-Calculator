@@ -7,6 +7,7 @@ app.service('ChartService',function(){
   }
     window.myChar = new Chart(ctx, {
         type: 'bar',
+        backgroundColor: "#F5DEB3",
         data: {
             labels: ["THP without SS", "THP with SS", "Tax Saving", "Salary Sacrifice"],
             datasets: [{
