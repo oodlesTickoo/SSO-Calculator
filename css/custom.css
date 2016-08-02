@@ -421,3 +421,38 @@ input[type=number] {
 						left:-80px !important;
 					}
 			}
+
+
+.res-1{
+    background-color: #6F7070!important;
+    color: white;
+    margin: 10px;
+    padding: 15px;
+}
+.res-2{
+    background-color: #ddd;
+    margin: 10px;
+    padding: 15px;
+    color: #666;
+    font-size: 12px;
+    font-weight: bold;
+}
+.res-2 > .col-xs-12 > .row > .col-xs-6{
+    padding: 5px 5px 5px 0;
+}
+.divider{
+    border-top: 1px solid #444;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.res-value{
+    font-size: 18px;
+        text-align: right;
+}
+.res-diff{
+    font-size: 36px;
+}
+.res-head{
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
