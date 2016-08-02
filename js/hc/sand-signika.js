@@ -6,7 +6,8 @@
 // Load the fonts
 Highcharts.createElement('link', {
 	// href: 'https://fonts.googleapis.com/css?family=Signika:400,700',
-	href: 'https://fonts.googleapis.com/css?family=Unica+One',
+	//href: 'https://fonts.googleapis.com/css?family=Unica+One',
+ 	href: 'https://fonts.googleapis.com/css?family=Dosis:400,600',
 	rel: 'stylesheet',
 	type: 'text/css'
 }, null, document.getElementsByTagName('head')[0]);
@@ -25,7 +26,8 @@ Highcharts.theme = {
 		backgroundColor: null,
 		style: {
 			// fontFamily: "Signika, serif"
-			fontFamily: "'Unica One', sans-serif"
+			//fontFamily: "'Unica One', sans-serif"
+			fontFamily: "Dosis, sans-serif"
 		}
 	},
 	// title: {
@@ -39,6 +41,7 @@ Highcharts.theme = {
 		style: {
 			color: '#000',
 			textTransform: 'uppercase',
+			fontWeight: 'bold',
 			fontSize: '20px'
 		}
 	},
@@ -74,7 +77,8 @@ Highcharts.theme = {
 		gridLineColor: '#707073',
 		labels: {
 			style: {
-				color: '#000'
+				color: '#000',
+				fontWeight: 'bold'
 			}
 		},
 		lineColor: '#707073',
@@ -91,7 +95,8 @@ Highcharts.theme = {
 		gridLineColor: '#707073',
 		labels: {
 			style: {
-				color: '#000'
+				color: '#000',
+				fontWeight: 'bold'
 			}
 		},
 		lineColor: '#707073',
@@ -100,7 +105,8 @@ Highcharts.theme = {
 		tickWidth: 1,
 		title: {
 			style: {
-				color: '#000'
+				color: '#000',
+				fontWeight: 'bold'
 			}
 		}
 	},
