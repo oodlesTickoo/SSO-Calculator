@@ -12,7 +12,7 @@
       <link rel="stylesheet" href="css/custom.css">
       <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css" >
    </head>
-   <body print-section>
+   <body print-section ng-cloak>
       <div class="otrp-calculator container-fluid " ng-controller="TTRController" >
          <div class=" row title " >
             <div class="col-xs-8 col-sm-9 col-lg-9">
@@ -99,12 +99,16 @@
                         <hr class="submit-hr"/>
                         <div class="row">
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Annual salary exclude SGC<span class="required">*</span></label>
+                              <div class="row ttr-label">
+                                 <label style="display:block" class="standard-label">Annual salary exclude SGC<span class="required">*</span></label>
+                              </div>
+                              <div class="row ttr-note" ng-show="csesError">Please enter a value between $1 and $300,000</div>
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.excludeSGC.$error.required && !ttrForm.excludeSGC.$pristine) ||  (ttrForm.excludeSGC.$error.required && ttrForm.excludeSGC.$touched)}">
+                              <div class="input-group"> 
+                              <!-- ng-class="{'err-border' : (ttrForm.excludeSGC.$error.required && !ttrForm.excludeSGC.$pristine) ||  (ttrForm.excludeSGC.$error.required && ttrForm.excludeSGC.$touched)}" -->
                                  <span class="input-group-addon">$</span>
-                                 <input type="number"  name="excludeSGC" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="excludeSGC" min="1" required />
+                                 <input type="number"  name="excludeSGC" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="excludeSGC" ng-change="calculateMaxTHP()" required />
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
@@ -114,12 +118,16 @@
                         <hr class="submit-hr"/>
                         <div class="row">
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Desired Minimum Take Home Salary Per Annum<span class="required">*</span></label>
+                              <div class="row ttr-label">
+                                 <label style="display:block" class="standard-label">Desired Minimum Take Home Salary Per Annum<span class="required">*</span></label>
+                              </div>
+                              <div class="row ttr-note" ng-show="thpError">Your Take Home Pay is not attainable</div>
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched)}">
+                              <div class="input-group">
+                              <!-- ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched )|| ttrForm.target.$invalid }" -->
                                  <span class="input-group-addon">$</span>
-                                 <input type="number" name="target" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="target" min="1" required>
+                                 <input type="number" name="target" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="target" min="1"    ng-change="changeTHP()" required>
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
@@ -129,7 +137,8 @@
                         <hr class="submit-hr"  print-remove />
                         <div class="row"  print-remove >
                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                              <button type="submit" class="btn btn-primary submit-btn" ng-disabled="ttrForm.excludeSGC.$pristine || ttrForm.target.$pristine || ttrForm.$invalid">Calculate </button>
+                              <button type="submit" class="btn btn-primary submit-btn" 
+                              ng-disabled="ttrForm.$invalid || csesError || thpError">Calculate </button>
                            </div>
                            <!-- <div ng-show="ttrForm.$invalid && !ttrForm.$pristine" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               Form contains erronous inputs. Please correct to Submit.

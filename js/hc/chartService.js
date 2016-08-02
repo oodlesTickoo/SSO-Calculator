@@ -38,8 +38,8 @@ app.service('ChartServiceHc',function(){
         },
 
         tooltip: {
-            headerFormat: '<span style="color:{point.color}">{point.key}</span><br>',
-            pointFormat: '$ <b>{point.y:.2f}</b><br/>'
+            headerFormat: '<span style="font-weight:700;color:{point.color}">{point.key}</span><br>',
+            pointFormat: '<b>$ {point.y:.2f}</b><br/>'
         },
 
         series: [{
