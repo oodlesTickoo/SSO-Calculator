@@ -41,6 +41,9 @@ app.service('ChartServiceHc',function(){
             headerFormat: '<span style="color:{point.color}">{point.key}</span><br>',
             pointFormat: '$ <b>{point.y:.2f}</b><br/>'
         },
+        credits: {
+            enabled: false
+        },
 
         series: [{
             // name: 'Brands',
