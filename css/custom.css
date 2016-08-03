@@ -339,9 +339,13 @@ input[type=number] {
 .info-title h2{
     margin:0;
 }
-  .info-content p{
+  .info-content ol{
     margin-top: 15px;
+    padding-left: 20px;
 
+  }
+  .info-content li{
+    margin-bottom:10px;
   }
 
 	.unattainable-thp-error{
