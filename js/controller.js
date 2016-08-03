@@ -19,6 +19,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
   $scope.csesError = false;
 
   $scope.thpError = false;
+
+  $scope.csesZeroError = false;
   
   $scope.infoShow=function(value){
     if(value){
@@ -152,13 +154,21 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     $scope.calculateMaxTHP = function(){
       $scope.thpError = false;
       $scope.csesError = false;
+      $scope.csesZeroError = false;
+      if($scope.target >= $scope.excludeSGC){
+        $scope.thpError = true;
+      }else{
      $scope.maxTHP =  WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,true);
      if($scope.maxTHP < $scope.target){
       $scope.thpError = true;
       console.log($scope.thpError);
      }
-     if($scope.excludeSGC > 300000 || $scope.excludeSGC < 1){
+   }
+     if($scope.excludeSGC > 300000){
       $scope.csesError = true;
+     }
+     if($scope.excludeSGC === 0){
+      $scope.csesZeroError = true;
      }
     }
 
@@ -166,7 +176,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     
      $scope.changeTHP = function(){
       $scope.thpError = false;
-     if($scope.maxTHP < $scope.target || $scope.target < 1 ){
+     if($scope.maxTHP < $scope.target){
       $scope.thpError = true;
      }
     }
