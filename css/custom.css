@@ -699,8 +699,8 @@ p.thpError-text{
 }
 
 @media print {
-.res-2,.strategy{
-    background-color: gray !important;
+.res-2,.strategy,.res-1{
+    background-color: #efefef !important;
     -webkit-print-color-adjust: exact; 
 }
 .result-div{
