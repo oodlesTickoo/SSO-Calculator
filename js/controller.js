@@ -87,9 +87,9 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
       $scope.dt = new Date(year, month, day);
     };
 
-    $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate','dd/MM/yyyy'];
-    $scope.format = $scope.formats[4];
-    // $scope.altInputFormats = ['M!/d!/yyyy'];
+    $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate','dd/MM/yyyy','d!/M!/yyyy'];
+    $scope.format = $scope.formats[5];
+    // $scope.altInputFormats = ['d!/M!/yyyy'];
 
     $scope.popup1 = {
       opened: false

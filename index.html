@@ -55,12 +55,13 @@
                               <label class="standard-label">Date Of Birth<span class="required">*</span></label>
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : ttrForm.dob.$invalid }">
+                              <div class="input-group">
+                              <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
                                  <input type="text" name="dob"
                                     class="standard-input form-control" show-button-bar="false"
                                     uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
                                     datepicker-options="dateOptions" required close-text="Close"
-                                    pattern=".{10,10}"/>
+                                    />
                                  <span class="input-group-addon" ng-click="open1()">
                                  <span class="glyphicon glyphicon-calendar"></span>
                                  </span>
@@ -88,11 +89,12 @@
                               <div class="row ttr-note">Please use 1 July of a particular Financial Year Here</div>
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : ttrForm.datePension.$invalid }">
+                              <div class="input-group"> 
+                              <!-- ng-class="{'err-border' : ttrForm.datePension.$invalid }" -->
                                  <input type="text" name="datePension" class="standard-input form-control"
                                     show-button-bar="false" uib-datepicker-popup="{{format}}"
                                     ng-model="datePension" is-open="popup2.opened" datepicker-options="dateOptions"
-                                    required close-text="Close" pattern=".{10,10}" />
+                                    required close-text="Close"/>
                                  <span class="input-group-addon" ng-click="open2()">
                                  <span class="glyphicon glyphicon-calendar"></span>
                                  </span>
