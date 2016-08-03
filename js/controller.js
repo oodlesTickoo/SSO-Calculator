@@ -148,6 +148,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
     $scope.optimisedSS;
 
+    $scope.needSS = true;
+
     $scope.maxTHP =  WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,true);
 
 
@@ -155,10 +157,10 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
       $scope.thpError = false;
       $scope.csesError = false;
       $scope.csesZeroError = false;
+           $scope.maxTHP =  WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,true);
       if($scope.target >= $scope.excludeSGC){
         $scope.thpError = true;
       }else{
-     $scope.maxTHP =  WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,true);
      if($scope.maxTHP < $scope.target){
       $scope.thpError = true;
       console.log($scope.thpError);
@@ -167,16 +169,16 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
      if($scope.excludeSGC > 300000){
       $scope.csesError = true;
      }
-     if($scope.excludeSGC === 0){
-      $scope.csesZeroError = true;
-     }
+     // if($scope.excludeSGC === 0){
+     //  $scope.csesZeroError = true;
+     // }
     }
 
     // $scope.calculateMaxTHP();
     
      $scope.changeTHP = function(){
       $scope.thpError = false;
-     if($scope.maxTHP < $scope.target){
+     if($scope.maxTHP < $scope.target || $scope.target >= $scope.excludeSGC){
       $scope.thpError = true;
      }
     }
@@ -184,6 +186,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
     $scope.submitForm = function(isValid){
       if(isValid){
+        $scope.needSS = true;
         $scope.calculationsDone = true;
         $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,false);
         $scope.thpWithoutSS = $scope.resultWithoutSS[0];
@@ -198,6 +201,9 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         $scope.optimisedSS = $scope.resultWithSS[3];
         $scope.unattainableTHP = $scope.resultWithSS[4];
         $scope.attainableTHP = !$scope.unattainableTHP;
+        if(($scope.resultWithoutSS[2] - $scope.resultWithSS[2]) > 0){
+          $scope.needSS = false;
+        }
         if($scope.attainableTHP && !$scope.unattainableTHPS){
           // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
           ChartServiceHc.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
