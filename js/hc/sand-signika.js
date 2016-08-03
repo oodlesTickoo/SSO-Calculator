@@ -18,10 +18,39 @@ Highcharts.createElement('link', {
 // 	this.container.style.background = 'url(http://www.highcharts.com/samples/graphics/sand.png)';
 // });
 
-
+var perShapeGradient = {
+            x1: 0,
+            y1: 0,
+            x2: 1,
+            y2: 0
+        };
 Highcharts.theme = {
-	colors: ["#f45b5b", "#8085e9", "#8d4654", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
-		"#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+	/*colors: ["#FE0001", "#F5DE1D", "#0271BB", "#039349", "#F5DE1D", "#F99321", "#eeaaee",
+		"#93278B", "#DF5353", "#7798BF", "#aaeeee"],*/
+		colors: [{
+            linearGradient: perShapeGradient,
+            stops: [
+                [0, 'rgb(247, 111, 111)'],
+                [1, 'rgb(220, 54, 54)']
+                ]
+            }, {
+            linearGradient: perShapeGradient,
+            stops: [
+                [0, 'rgb(120, 202, 248)'],
+                [1, 'rgb(46, 150, 208)']
+                ]
+            }, {
+            linearGradient: perShapeGradient,
+            stops: [
+                [0, 'rgb(136, 219, 5)'],
+                [1, 'rgb(112, 180, 5)']
+                ]},{
+            linearGradient: perShapeGradient,
+            stops: [
+                [0, 'rgb(241, 244, 138)'],
+                [1, 'rgb(226, 233, 21)'],
+                ]}, 
+        ],
 	chart: {
 		backgroundColor: null,
 		style: {
