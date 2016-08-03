@@ -1,4 +1,4 @@
-app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService',function($scope,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService){
+app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService','ChartServiceHc',function($scope,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService,ChartServiceHc){
 
   // $scope.rate = SGCRate.calculateSGCRate(new Date(2011,11,11));
 
@@ -9,13 +9,19 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
   $scope.resultWithSS=[0,0,0];
   $scope.resultWithoutSS=[0,0,0];
 
-  $scope.cses = 0;
-  $scope.excludeSGC = 0;
-  $scope.tfp = 0;
-  $scope.nra = 0;
-  $scope.nrp = 0;
-  $scope.target = 0;
-  $scope.ss = 0;
+  $scope.excludeSGC = 80000;
+  $scope.target = 40000;
+
+  $scope.maxTHP = 0; 
+
+  $scope.maxTHPError = false;
+
+  $scope.csesError = false;
+
+  $scope.thpError = false;
+
+  $scope.csesZeroError = false;
+  
   $scope.infoShow=function(value){
     if(value){
       document.getElementsByClassName("information-overlay")[0].style.visibility="visible";
@@ -81,9 +87,9 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
       $scope.dt = new Date(year, month, day);
     };
 
-    $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate','dd/MM/yyyy'];
-    $scope.format = $scope.formats[4];
-    // $scope.altInputFormats = ['M!/d!/yyyy'];
+    $scope.formats = ['dd-MMM-yyyy', 'yyyy/MM/dd', 'dd.MM.yyyy', 'shortDate','dd/MM/yyyy','d!/M!/yyyy'];
+    $scope.format = $scope.formats[5];
+    // $scope.altInputFormats = ['d!/M!/yyyy'];
 
     $scope.popup1 = {
       opened: false
@@ -142,10 +148,47 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
     $scope.optimisedSS;
 
+    $scope.needSS = true;
+
+    $scope.maxTHP =  WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,true);
+
+
+    $scope.calculateMaxTHP = function(){
+      $scope.thpError = false;
+      $scope.csesError = false;
+      $scope.csesZeroError = false;
+           $scope.maxTHP =  WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,true);
+      if($scope.target >= $scope.excludeSGC){
+        $scope.thpError = true;
+      }else{
+     if($scope.maxTHP < $scope.target){
+      $scope.thpError = true;
+      console.log($scope.thpError);
+     }
+   }
+     if($scope.excludeSGC > 300000){
+      $scope.csesError = true;
+     }
+     // if($scope.excludeSGC === 0){
+     //  $scope.csesZeroError = true;
+     // }
+    }
+
+    // $scope.calculateMaxTHP();
+    
+     $scope.changeTHP = function(){
+      $scope.thpError = false;
+     if($scope.maxTHP < $scope.target || $scope.target >= $scope.excludeSGC){
+      $scope.thpError = true;
+     }
+    }
+
+
     $scope.submitForm = function(isValid){
       if(isValid){
+        $scope.needSS = true;
         $scope.calculationsDone = true;
-        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target);
+        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,false);
         $scope.thpWithoutSS = $scope.resultWithoutSS[0];
         $scope.taxWithoutSS = $scope.resultWithoutSS[1];
         $scope.finalAmountWithoutSS = $scope.resultWithoutSS[2];
@@ -158,21 +201,28 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         $scope.optimisedSS = $scope.resultWithSS[3];
         $scope.unattainableTHP = $scope.resultWithSS[4];
         $scope.attainableTHP = !$scope.unattainableTHP;
+        if(($scope.resultWithoutSS[2] - $scope.resultWithSS[2]) > 0){
+          $scope.needSS = false;
+        }
         if($scope.attainableTHP && !$scope.unattainableTHPS){
-          ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
+          // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
+          ChartServiceHc.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
+
         }
-        else{
-          if(window.myChar !== undefined){
-            myChar.destroy();
-            document.getElementById("myChart").style.display="none";
-          }
-        }
+        // else{
+        //   if(window.myChar !== undefined){
+        //     myChar.destroy();
+        //     document.getElementById("myChart").style.display="none";
+        //   }
+        // }
         console.log("complete");
       }
       else{
         console.log("has errors");
       }
     }
+
+    $scope.submitForm(true);
 
     $scope.overlay = false;
 

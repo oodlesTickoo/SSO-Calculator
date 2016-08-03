@@ -1,7 +1,7 @@
 
 //var WithoutSSCalculatorService = angular.module('WithoutSSCalculatorService', [])
 app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function(TaxRateCalculator,SGCRate,AgeCalculator){
-        this.getFinalAmount = function(dob,datePension,excludeSGC,minTakeHomePay){
+        this.getFinalAmount = function(dob,datePension,excludeSGC,minTakeHomePay,maxTHPCalculation){
             var age = AgeCalculator.getAge(dob,datePension.getFullYear());
             var sgc=SGCRate.calculateSGCRate(datePension)*excludeSGC;
             var concessionalContributionCap;
@@ -13,6 +13,9 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator
             var assessableAnnualIncome=grossAnnualIncomebeforeSGC-additionalConcessionalContribution;
             var personalTax= TaxRateCalculator.getTaxBase(assessableAnnualIncome)+TaxRateCalculator.getTaxRate(assessableAnnualIncome)*(assessableAnnualIncome-1-TaxRateCalculator.getLowerBoundValue(assessableAnnualIncome));
             var takehomePay=assessableAnnualIncome-personalTax;
+            if(maxTHPCalculation){
+                return takehomePay;
+            }
             var concessionalContribution=additionalConcessionalContribution+sgc;
             if(concessionalContribution>concessionalContributionCap){
                   var contributionTax=concessionalContribution*concessionalContributionTax+((concessionalContribution-concessionalContributionCap)*excessContributionTax);
