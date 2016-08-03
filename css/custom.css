@@ -356,11 +356,13 @@ input[type=number] {
 }
 
 .strategy{
-    background: #efefef !important;
-    color: black;
-    font-size: 1.5em; 
+    /*background: #efefef !important;*/
+    background-color: #ddd;
+    color: #666;
+    font-size: 14px; 
+    font-weight: bold;
     text-align: center;
-    padding: 20px 20px;
+    padding: 10px;
 }
 .cta{
     padding: 10px;
@@ -428,18 +430,18 @@ input[type=number] {
     background-color: #6F7070!important;
     color: white;
     /*margin: 10px;*/
-    margin:10px 5px;
-    padding: 15px;
+    margin:10px 0px;
+    padding: 10px;
     margin-bottom: 0;
 }
 .res-2{
     background-color: #ddd;
-    margin: 10px 5px;
-    padding: 15px;
+    margin: 10px 0px;
+    padding: 10px;
     color: #666;
     font-size: 11px;
     font-weight: bold;
-    margin-top: 3px;
+    margin-top: 5px;
 }
 .res-2 > .col-xs-12 > .row > .col-xs-6{
     padding: 5px 5px 5px 0;
@@ -460,8 +462,8 @@ input[type=number] {
     margin-bottom: -8px;
 }
 .res-head{
-    padding-top: 3px;
-    padding-bottom: 3px;
+    /*padding-top: 3px;*/
+    /*padding-bottom: 3px;*/
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
@@ -483,9 +485,17 @@ input[type=number] {
 }
 p.error-text{
     margin: 0px;
-    padding: 15px;
-    text-align: center;
+    padding: 10px;
     font-size:14px;
     background-color: #88c2e8;
     color: #fff;
 }
+p.thpError-text{
+    text-align: center !important;
+}
+
+/*@media print{
+    .highcharts-container{
+        max-width:100% !important;
+    }
+}*/

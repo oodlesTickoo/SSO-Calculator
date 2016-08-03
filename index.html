@@ -151,11 +151,11 @@
                         </div>
                         <div class="row" ng-show="thpError || csesError">
                         <div class="col-xs-12">
-                          <p class="error-text" ng-show="thpError && !csesError">
+                          <p class="error-text thpError-text" ng-show="thpError && !csesError">
                             This Take Home Pay value is not attainable for your Annual Salary.
                           </p>
                           <p class="error-text" ng-show="csesError">
-                            This Calculator only works for a maximum Annual Salary of {{ 300000 | currency }}, due to Div 293 Tax implications. To know more, click on the info button above. 
+                            This Calculator only works for a maximum Annual Salary of {{ 300000 | currency }}, due to the Div 293 Tax implications. To know more, click on the <b>Information</b> button above. 
                           </p>
                         </div>
                         </div>
@@ -175,8 +175,12 @@
                 </div>
                  <div class="col-xs-12 col-sm-5 col-md-5">
                    <div class="row res-1">
-                     <div class="col-xs-12">
-                       <div class="row"><strong>With Salary Sacrifice it will save you</strong></div>
+                     <div class="col-xs-12" ng-show="needSS">
+                       <div class="row"><strong>With Salary Sacrifice,you save</strong></div>
+                       <div class="row res-diff">{{ resultWithSS[2] -resultWithoutSS[2] | currency }}</div>
+                     </div>
+                     <div class="col-xs-12" ng-show="!needSS">
+                       <div class="row"><strong>Without Salary Sacrifice, you save</strong></div>
                        <div class="row res-diff">{{ resultWithoutSS[2] -resultWithSS[2] | currency }}</div>
                      </div>
                    </div>
@@ -215,7 +219,7 @@
                      </div>
                    </div>
                  </div>
-                 <div class="col-xs-12">
+                 <div class="col-xs-12" ng-show="needSS">
                    <p class="strategy">
                               Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
                            </p>
