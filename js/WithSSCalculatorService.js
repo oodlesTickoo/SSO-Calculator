@@ -11,17 +11,17 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
 
             var totalEmployerContribution = SGCRate.calculateSGCRate(datePension)*excludeSGC;
 
-            var validEmployerContribution;
+            // var validEmployerContribution;
 
             var upperSS;
 
-            if(totalEmployerContribution >= 19307.80){
-            validEmployerContribution = 19307.80;
-            }else{
-            validEmployerContribution = totalEmployerContribution;
-            }
+            // if(totalEmployerContribution >= 19307.80){
+            // validEmployerContribution = 19307.80;
+            // }else{
+            // validEmployerContribution = totalEmployerContribution;
+            // }
 
-            upperSS = concessionalContributionCap - validEmployerContribution;
+            upperSS = concessionalContributionCap - totalEmployerContribution;
 
             var grossAnnualIncomebeforeSGC=excludeSGC;
 
@@ -43,7 +43,7 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
             var personalTax= TaxRateCalculator.getTaxBase(assessableAnnualIncome)+TaxRateCalculator.getTaxRate(assessableAnnualIncome)*(assessableAnnualIncome-1-TaxRateCalculator.getLowerBoundValue(assessableAnnualIncome));
             var takehomePay=assessableAnnualIncome-personalTax;
             if(takehomePay >= minTakeHomePay){
-              var concessionalContribution=additionalConcessionalContribution+validEmployerContribution;
+              var concessionalContribution=additionalConcessionalContribution+totalEmployerContribution;
               if(concessionalContribution>concessionalContributionCap){
                     var contributionTax=concessionalContribution*concessionalContributionTax+((concessionalContribution-concessionalContributionCap)*excessContributionTax);
               }else{

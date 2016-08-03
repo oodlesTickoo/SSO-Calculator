@@ -12,8 +12,8 @@
       <link rel="stylesheet" href="css/custom.css">
       <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css" >
    </head>
-   <body print-section ng-cloak >
-      <div class="otrp-calculator container-fluid"  ng-controller="TTRController" >
+   <body print-section ng-cloak>
+      <div class="otrp-calculator container-fluid " ng-controller="TTRController" >
          <div class=" row title " >
             <div class="col-xs-8 col-sm-9 col-lg-9">
                <h1>Salary Sacrifice Optimisation</h1>
@@ -99,12 +99,16 @@
                         <hr class="submit-hr"/>
                         <div class="row">
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Annual salary exclude SGC<span class="required">*</span></label>
+                              <div class="row ttr-label">
+                                 <label style="display:block" class="standard-label">Annual salary exclude SGC<span class="required">*</span></label>
+                              </div>
+                              <!-- <div class="row ttr-note" ng-show="csesError">Please enter a value between $1 and $300,000</div> -->
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.excludeSGC.$error.required && !ttrForm.excludeSGC.$pristine) ||  (ttrForm.excludeSGC.$error.required && ttrForm.excludeSGC.$touched)}">
+                              <div class="input-group"> 
+                              <!-- ng-class="{'err-border' : (ttrForm.excludeSGC.$error.required && !ttrForm.excludeSGC.$pristine) ||  (ttrForm.excludeSGC.$error.required && ttrForm.excludeSGC.$touched)}" -->
                                  <span class="input-group-addon">$</span>
-                                 <input type="number"  name="excludeSGC" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="excludeSGC" min="1" required />
+                                 <input type="number"  name="excludeSGC" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="excludeSGC" ng-change="calculateMaxTHP()" required />
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
@@ -114,12 +118,16 @@
                         <hr class="submit-hr"/>
                         <div class="row">
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                              <label class="standard-label">Desired Minimum Take Home Salary Per Annum<span class="required">*</span></label>
+                              <div class="row ttr-label">
+                                 <label style="display:block" class="standard-label">Desired Minimum Take Home Salary Per Annum<span class="required">*</span></label>
+                              </div>
+                              <!-- <div class="row ttr-note" ng-show="thpError">Your Take Home Pay is not attainable</div> -->
                            </div>
                            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 form-group">
-                              <div class="input-group" ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched)}">
+                              <div class="input-group">
+                              <!-- ng-class="{'err-border' : (ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched )|| ttrForm.target.$invalid }" -->
                                  <span class="input-group-addon">$</span>
-                                 <input type="number" name="target" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="target" min="1" required>
+                                 <input type="number" name="target" onClick="this.select();" onClick="this.setSelectionRange(0, this.value.length)" class="standard-input form-control" ng-model="target" min="0" ng-change="changeTHP()" required>
                               </div>
                            </div>
                            <!-- <div class="col-xs-4 col-sm-4 col-lg-4"> -->
@@ -127,13 +135,24 @@
                            <!-- </div> -->
                         </div>
                         <hr class="submit-hr"  print-remove />
-                        <div class="row"  print-remove >
+                        <div class="row"  print-remove ng-hide="thpError || csesError">
                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                              <button type="submit" class="btn btn-primary submit-btn" ng-disabled="ttrForm.excludeSGC.$pristine || ttrForm.target.$pristine || ttrForm.$invalid">Calculate </button>
+                              <button type="submit" class="btn btn-primary submit-btn" 
+                              ng-disabled="ttrForm.$invalid || csesError || thpError">Calculate </button>
                            </div>
                            <!-- <div ng-show="ttrForm.$invalid && !ttrForm.$pristine" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                               Form contains erronous inputs. Please correct to Submit.
                               </div> -->
+                        </div>
+                        <div class="row" ng-show="thpError || csesError">
+                        <div class="col-xs-12">
+                          <p class="error-text" ng-show="thpError && !csesError">
+                            This Take Home Pay value is not attainable for your Annual Salary.
+                          </p>
+                          <p class="error-text" ng-show="csesError">
+                            This Calculator only works for a maximum Annual Salary of {{ 300000 | currency }}, due to Div 293 Tax implications. To know more, click on the info button above. 
+                          </p>
+                        </div>
                         </div>
                      </form>
                   </div>
@@ -142,11 +161,13 @@
                   <h3 class="results-title">Your Results</h3>
                </div>
                <div class="row result-div">
-                 <div class="col-xs-12 col-sm-7 col-md-7">
+                <div class="col-xs-12 col-sm-7 col-md-7">
                    
-                 <div id="container" style="margin: 0 auto"></div>
+                <div id="container">
+                  
+                </div>
                
-                 </div>
+                </div>
                  <div class="col-xs-12 col-sm-5 col-md-5">
                    <div class="row res-1">
                      <div class="col-xs-12">
@@ -188,6 +209,11 @@
                         </div>
                      </div>
                    </div>
+                 </div>
+                 <div class="col-xs-12">
+                   <p class="strategy">
+                              Your optimised Salary Sacrifice value is {{optimisedSS | currency}}.
+                           </p>
                  </div>
                </div>
                <!-- <div class="row result-div" ng-show="!unattainableTHPS || attainableTHP">
@@ -264,7 +290,7 @@
                         </div> 
                   </div>
                </div> -->
-               <div class="row result-head" ng-show="(!unattainableTHP || !unattainableTHPS) && calculationsDone">
+               <!-- <div class="row result-head" ng-show="(!unattainableTHP || !unattainableTHPS) && calculationsDone">
                   <h3 class="results-title">Strategy</h3>
                </div>
                <div class="row result-div">
@@ -291,7 +317,7 @@
                         </div>
                      </div>
                   </div>
-               </div>
+               </div> -->
                <!-- <canvas id="myChart" width="400" height="300" style="display:none; height:300px !important;margin-bottom:15px;"></canvas> -->
                <div class="row cta">
                   <div class="col-xs-12">

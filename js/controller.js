@@ -9,13 +9,19 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
   $scope.resultWithSS=[0,0,0];
   $scope.resultWithoutSS=[0,0,0];
 
-  $scope.cses = 0;
-  $scope.excludeSGC = 0;
-  $scope.tfp = 0;
-  $scope.nra = 0;
-  $scope.nrp = 0;
-  $scope.target = 0;
-  $scope.ss = 0;
+  $scope.excludeSGC = 80000;
+  $scope.target = 40000;
+
+  $scope.maxTHP = 0; 
+
+  $scope.maxTHPError = false;
+
+  $scope.csesError = false;
+
+  $scope.thpError = false;
+
+  $scope.csesZeroError = false;
+  
   $scope.infoShow=function(value){
     if(value){
       document.getElementsByClassName("information-overlay")[0].style.visibility="visible";
@@ -142,10 +148,44 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
 
     $scope.optimisedSS;
 
+    $scope.maxTHP =  WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,true);
+
+
+    $scope.calculateMaxTHP = function(){
+      $scope.thpError = false;
+      $scope.csesError = false;
+      $scope.csesZeroError = false;
+      if($scope.target >= $scope.excludeSGC){
+        $scope.thpError = true;
+      }else{
+     $scope.maxTHP =  WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,true);
+     if($scope.maxTHP < $scope.target){
+      $scope.thpError = true;
+      console.log($scope.thpError);
+     }
+   }
+     if($scope.excludeSGC > 300000){
+      $scope.csesError = true;
+     }
+     if($scope.excludeSGC === 0){
+      $scope.csesZeroError = true;
+     }
+    }
+
+    // $scope.calculateMaxTHP();
+    
+     $scope.changeTHP = function(){
+      $scope.thpError = false;
+     if($scope.maxTHP < $scope.target){
+      $scope.thpError = true;
+     }
+    }
+
+
     $scope.submitForm = function(isValid){
       if(isValid){
         $scope.calculationsDone = true;
-        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target);
+        $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.dob,$scope.datePension,$scope.excludeSGC,$scope.target,false);
         $scope.thpWithoutSS = $scope.resultWithoutSS[0];
         $scope.taxWithoutSS = $scope.resultWithoutSS[1];
         $scope.finalAmountWithoutSS = $scope.resultWithoutSS[2];
@@ -175,6 +215,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         console.log("has errors");
       }
     }
+
+    $scope.submitForm(true);
 
     $scope.overlay = false;
 
