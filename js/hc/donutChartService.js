@@ -14,26 +14,19 @@ app.service('DonutChartServiceHc',function(){
         	enabled:false
         },
         title: {
-           text: 'Salary Sacrifice Optimisation'
+           text: 'Salary Sacrifice Optimisation',
             // align: 'center',
             // verticalAlign: 'middle',
-            // y: -10
+             y: 25
         },
         tooltip: {
         	headerFormat: '<span style="font-weight:700;color:{point.color}">{point.key}</span><br>',
             pointFormat: '{series.name}: <b>{point.y}%</b>'
-         // formatter:function(){
-         //          return '<span style="color:'+this.series.color+'">'+this.key+'</span>: <b>'+Highcharts.numberFormat((this.y*100),2,'.')+'%</b>';
-         //        }
         },
         plotOptions: {
             pie: {
                 dataLabels: {
                     enabled: true,
-    //                 formatter: function () {
-    //     // return Highcharts.numberFormat(this.y,2);
-    //     return this.key;
-    // },
                     distance: -50,
                     style: {
                         fontWeight: 'bold',
@@ -41,10 +34,10 @@ app.service('DonutChartServiceHc',function(){
                         textShadow: '0px 1px 2px black'
                     }
                 },
-                size:280,
+                size:285,
                 startAngle: -100,
                 endAngle: 260,
-                center: ['50%', '50%']
+                center: ['50%', '45%']
             }
         },
         series: [{

@@ -21,6 +21,8 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
   $scope.thpError = false;
 
   $scope.csesZeroError = false;
+
+  $scope.chartOneOpen = true;
   
   $scope.infoShow=function(value){
     if(value){
