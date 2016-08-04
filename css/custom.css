@@ -726,3 +726,7 @@ p.thpError-text{
   border:1px solid #ddd !important;
   outline:none !important;
 }
+
+.print-btn button{
+float:right;
+}

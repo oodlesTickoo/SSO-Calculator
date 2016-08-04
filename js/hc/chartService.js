@@ -36,9 +36,8 @@ app.service('ChartServiceHc',function(){
                 // }
             }
         },
-
         tooltip: {
-            headerFormat: '<span style="font-weight:700;color:{point.color}">{point.key}</span><br>',
+            headerFormat: '<span style="font-weight:700;font-size:14px;">{point.key}</span><br>',
             pointFormat: '<b>$ {point.y:.2f}</b><br/>'
         },
         credits: {

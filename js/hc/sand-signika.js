@@ -27,28 +27,28 @@ var perShapeGradient = {
 Highcharts.theme = {
 	/*colors: ["#FE0001", "#F5DE1D", "#0271BB", "#039349", "#F5DE1D", "#F99321", "#eeaaee",
 		"#93278B", "#DF5353", "#7798BF", "#aaeeee"],*/
-		colors: [{
+		 colors: [{
             linearGradient: perShapeGradient,
             stops: [
-                [0, 'rgb(247, 111, 111)'],
-                [1, 'rgb(220, 54, 54)']
+            	[0, '#1B2631'],
+                [1, '#3C546D']
                 ]
             }, {
             linearGradient: perShapeGradient,
             stops: [
-                [0, 'rgb(120, 202, 248)'],
-                [1, 'rgb(46, 150, 208)']
+                [0, '#0D293F'],
+                [1, '#1D6195']
                 ]
             }, {
             linearGradient: perShapeGradient,
             stops: [
-                [0, 'rgb(136, 219, 5)'],
-                [1, 'rgb(112, 180, 5)']
+                [0, '#0E2421'],
+                [1, '#337F75']
                 ]},{
             linearGradient: perShapeGradient,
             stops: [
-                [0, 'rgb(241, 244, 138)'],
-                [1, 'rgb(226, 233, 21)'],
+                [0, '#3F3F3F'],
+                [1, '#6E6F6F']
                 ]}, 
         ],
 	chart: {

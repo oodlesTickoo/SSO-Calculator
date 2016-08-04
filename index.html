@@ -169,7 +169,7 @@
                </div>
                <div class="row result-div">
                 <div class="col-xs-12 col-sm-7 col-md-7">
-                <div class="row chart-buttons-row">
+                <div class="row chart-buttons-row" print-remove>
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 <button class="btn btn-primary" ng-click="chartOneOpen = true" ng-disabled="chartOneOpen">Chart 1</button>
                 <button class="btn btn-primary" ng-click="chartOneOpen = false" ng-disabled="!chartOneOpen">Chart 2</button>
@@ -179,6 +179,13 @@
                 <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;"></div>
                 </div>
                  <div class="col-xs-12 col-sm-5 col-md-5">
+                 <div class="row chart-buttons-row print-btn" print-remove onclick="window.print()">
+                <div class="col-xs-12 col-sm-12 col-md-12">
+                <button class="btn btn-primary">
+                  Print Result
+                </button>
+                </div>
+                </div>
                    <div class="row res-1">
                      <div class="col-xs-12" ng-show="needSS">
                        <div class="row"><strong>With Salary Sacrifice,you save</strong></div>

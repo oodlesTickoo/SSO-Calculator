@@ -20,7 +20,8 @@ app.service('DonutChartServiceHc',function(){
              y: 25
         },
         tooltip: {
-        	headerFormat: '<span style="font-weight:700;color:{point.color}">{point.key}</span><br>',
+        	headerFormat: '<span style="font-weight:700; font-size:14px;">{point.key}</span><br>',
+        	// color:{point.color}
             pointFormat: '{series.name}: <b>{point.y}%</b>'
         },
         plotOptions: {
@@ -44,6 +45,7 @@ app.service('DonutChartServiceHc',function(){
             type: 'pie',
             name: 'Amount',
             innerSize: '50%',
+            colorByPoint:true,
             data: [
                 ['THP Without Salary Sacrifice', 40.00],
                 ['THP With Salary Sacrifice', 35.00],
