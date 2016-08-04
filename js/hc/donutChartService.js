@@ -1,6 +1,16 @@
 app.service('DonutChartServiceHc',function(){
   this.createChart = function(thpWithoutSS,thpWithSS,taxSaving,optimisedSS){
-     
+
+  	var total = thpWithoutSS + thpWithSS + taxSaving +optimisedSS;
+
+  	var thpWithSSPercentage = (thpWithSS/total) * 100;
+	
+	var thpWithoutSSPercentage = thpWithoutSS/total * 100; 
+    
+    var taxSavingPercentage = taxSaving/total * 100;
+
+    var SSPercentage = optimisedSS/total * 100;
+
     $('#donutContainer').highcharts({
         chart: {
             plotBackgroundColor: null,
@@ -22,7 +32,11 @@ app.service('DonutChartServiceHc',function(){
         tooltip: {
         	headerFormat: '<span style="font-weight:700; font-size:14px;">{point.key}</span><br>',
         	// color:{point.color}
-            pointFormat: '{series.name}: <b>{point.y}%</b>'
+            // pointFormat: '{series.name}: <b>{point.y * total}%</b>',
+            pointFormatter: function(){
+            	                  return '<span ></span><b>'+'Amount : $' + Highcharts.numberFormat((((this.y/100)*total).toFixed(2)),2,'.')+'</b>';
+
+            }
         },
         plotOptions: {
             pie: {
@@ -36,8 +50,8 @@ app.service('DonutChartServiceHc',function(){
                     }
                 },
                 size:285,
-                startAngle: -100,
-                endAngle: 260,
+                startAngle: 90,
+                endAngle: 450,
                 center: ['50%', '45%']
             }
         },
@@ -47,10 +61,10 @@ app.service('DonutChartServiceHc',function(){
             innerSize: '50%',
             colorByPoint:true,
             data: [
-                ['THP Without Salary Sacrifice', 40.00],
-                ['THP With Salary Sacrifice', 35.00],
-                ['Tax Savings',8.00],
-                ['Salary Sacrifice', 17.00],
+                ['THP Without Salary Sacrifice', thpWithoutSSPercentage],
+                ['THP With Salary Sacrifice', thpWithSSPercentage],
+                ['Tax Savings',taxSavingPercentage],
+                ['Salary Sacrifice', SSPercentage],
                 {
                     name: 'Proprietary or Undetectable',
                     y: 0.2,
