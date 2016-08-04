@@ -481,7 +481,7 @@ input[type=number] {
     font-size: 14px;
     text-transform: capitalize;
 }
-.highcharts-container{
+#container .highcharts-container{
     margin-top:10px;
 }
 
@@ -706,4 +706,27 @@ p.thpError-text{
 .result-div{
     border-bottom:1px solid #e2e2e2;
 }
+}
+
+.chart-buttons-row{
+  margin-top:15px;
+}
+
+.chart-buttons-row button{
+  background-color: #ddd;
+  color:#666;
+  border-radius:0px;
+  outline:none;
+  border:1px solid #ddd;
+}
+
+.chart-buttons-row button:hover,.chart-buttons-row button:active,.chart-buttons-row button:focus,.chart-buttons-row button:visited{
+  color:#666 !important;
+  background-color: #ddd !important;
+  border:1px solid #ddd !important;
+  outline:none !important;
+}
+
+.print-btn button{
+float:right;
 }

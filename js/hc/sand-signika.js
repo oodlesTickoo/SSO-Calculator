@@ -27,7 +27,7 @@ var perShapeGradient = {
 Highcharts.theme = {
 	/*colors: ["#FE0001", "#F5DE1D", "#0271BB", "#039349", "#F5DE1D", "#F99321", "#eeaaee",
 		"#93278B", "#DF5353", "#7798BF", "#aaeeee"],*/
-		colors: [{
+		 colors: [{
             linearGradient: perShapeGradient,
             stops: [
             	[0, '#1B2631'],
