@@ -180,3 +180,7 @@ Highcharts.theme = {
 
 // Apply the theme
 Highcharts.setOptions(Highcharts.theme);
+
+Highcharts.setOptions({lang: {
+			thousandsSep: ','
+		}});

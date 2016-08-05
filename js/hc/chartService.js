@@ -1,5 +1,9 @@
 app.service('ChartServiceHc',function(){
   this.createChart = function(thpWithoutSS,thpWithSS,taxSaving,optimisedSS){
+    
+    Highcharts.setOptions({lang: {
+            thousandsSep: ','
+        }});
 
     // Create the chart
     $('#container').highcharts({
@@ -8,6 +12,9 @@ app.service('ChartServiceHc',function(){
         },
         title: {
             text: 'Salary Sacrifice Optimisation'
+        },
+        exporting:{
+            enabled:false
         },
         // subtitle: {
         //     text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
@@ -38,7 +45,11 @@ app.service('ChartServiceHc',function(){
         },
         tooltip: {
             headerFormat: '<span style="font-weight:700;font-size:14px;">{point.key}</span><br>',
-            pointFormat: '<b>$ {point.y:.2f}</b><br/>'
+            // pointFormat: '<b>$ {point.y:.2f}</b><br/>'
+            pointFormatter: function(){
+                return '<b>'+'Amount : $' + Highcharts.numberFormat((((this.y)).toFixed(2)),2,'.')+'</b>';
+
+            }
         },
         credits: {
             enabled: false
