@@ -42,7 +42,7 @@ app.service('DonutChartServiceHc',function(){
             pie: {
                 dataLabels: {
                     enabled: true,
-                    distance: -50,
+                    distance: -40,
                     style: {
                         fontWeight: 'bold',
                         color: 'white',
@@ -62,9 +62,9 @@ app.service('DonutChartServiceHc',function(){
             colorByPoint:true,
             data: [
                 ['THP Without Salary Sacrifice', thpWithoutSSPercentage],
-                ['THP With Salary Sacrifice', thpWithSSPercentage],
                 ['Tax Savings',taxSavingPercentage],
                 ['Salary Sacrifice', SSPercentage],
+                ['THP With Salary Sacrifice', thpWithSSPercentage],
                 {
                     name: 'Proprietary or Undetectable',
                     y: 0.2,
