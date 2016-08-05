@@ -10,6 +10,7 @@
       <link rel="stylesheet" href="css/bootstrap.min.css">
       <link rel="stylesheet" href="css/bootstrap-select.min.css">
       <link rel="stylesheet" href="css/custom.css">
+      <link rel="stylesheet" href="css/font-awesome.css">
       <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css" >
    </head>
    <body print-section ng-cloak>
@@ -171,8 +172,8 @@
                 <div class="col-xs-12 col-sm-7 col-md-7">
                 <div class="row chart-buttons-row" print-remove>
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                <button class="btn btn-primary" ng-click="chartOneOpen = true" ng-disabled="chartOneOpen">Chart 1</button>
-                <button class="btn btn-primary" ng-click="chartOneOpen = false" ng-disabled="!chartOneOpen">Chart 2</button>
+                <button class="btn btn-primary" ng-click="chartOneOpen = true" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
+                <button class="btn btn-primary" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
                 </div>
                 </div>
                 <div id="container" ng-show="chartOneOpen" style="margin:0 auto;"></div>
