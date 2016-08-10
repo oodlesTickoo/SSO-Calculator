@@ -230,5 +230,99 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
     $scope.overlay = false;
 
 
+$scope.age = 42;
+
+    $scope.fy = 2016;
+
+    $scope.cses = 200000;
+
+    var ageSlider = document.getElementById('ageSlider'),
+    fySlider = document.getElementById('fySlider'),
+    csesSlider = document.getElementById('csesSlider');
+
+
+    noUiSlider.create(ageSlider, {
+     start: [ 40],
+     range: {
+      'min': [  18 ],
+      'max': [ 65 ]
+     },
+    step : 1,
+    format: wNumb({
+     decimals: 0,
+    }),
+    connect : 'lower'
+    });
+
+    noUiSlider.create(fySlider, {
+     start: [ 2016],
+     range: {
+      'min': [ 2015 ],
+      'max': [ 2025 ]
+     },
+    step : 1,
+    format: wNumb({
+     decimals: 0,
+    }),
+    connect : 'lower'
+    });
+
+    noUiSlider.create(csesSlider, {
+     start: [200000],
+     range: {
+      'min': [10000],
+      'max': [300000]
+     },
+    step : 1000,
+    format: wNumb({
+     decimals: 0,
+    }),
+    connect : 'lower'
+    });
+
+    var ageInput = document.getElementById('ageInput'),
+    fyInput = document.getElementById('fyInput'),
+    csesInput = document.getElementById('csesInput');
+
+    ageSlider.noUiSlider.on('update', function( values, handle ) {
+    ageInput.value = values[handle];
+    $scope.age = Number(values[handle]);
+    });
+
+    fySlider.noUiSlider.on('update', function( values, handle ) {
+    // console.log("abcd");
+    fyInput.value = values[handle];
+    $scope.fy = Number(values[handle]);
+    });
+
+    csesSlider.noUiSlider.on('update', function( values, handle ) {
+    csesInput.value = values[handle];
+    $scope.cses = Number(values[handle]);
+    });
+
+    $scope.changeAgeInput = function(){
+      ageSlider.noUiSlider.set($scope.age);
+    }
+
+    $scope.changeFyInput = function(){
+      fySlider.noUiSlider.set($scope.fy);
+    }
+
+    // $('#csesInput').on("change",function(){
+    //   if(this.value < 10000){
+    //     this.value = 10000;
+    //   }
+    //   csesSlider.noUiSlider.set($scope.cses);
+    // })
+
+    $scope.changeCsesInput = function(){
+      if($scope.cses < 10000){
+        $scope.cses = 10000;
+      }
+
+    csesSlider.noUiSlider.set($scope.cses);
+    }
+
+
 
 }]);
