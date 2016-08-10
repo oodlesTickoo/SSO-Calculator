@@ -143,31 +143,81 @@
                            <!-- <div class="err-msg" ng-show="(ttrForm.target.$error.required && !ttrForm.target.$pristine) ||  (ttrForm.target.$error.required && ttrForm.target.$touched) || (ttrForm.target.$invalid && !ttrForm.target.$pristine)">Enter Valid Numeric Value</div> -->
                            <!-- </div> -->
                         </div>
+                        <hr class="submit-hr"/>
                         <div class="row">
+                        <div class="col-xs-6">
+                          Age
+                          <div class="row">
                            <div class="col-xs-4">
                              <div class="form-group">
-                             <label for="fyInput">Financial Year</label>
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="ageInput" name="ageInput" ng-model="age" ng-change="changeAgeInput()">
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="ageSlider" style="margin-top:12px;"></div>
+                           </div>
+                           </div>  
+                        </div>
+                        <!-- </div> -->
+                        <!-- <hr class="submit-hr"/> -->
+                        <!-- <div class="row"> -->
+                        <div class="col-xs-6">
+                          Financial Year
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
                              <input type="number" class="form-control" id="fyInput" name="fyInput" ng-model="fy" ng-change="changeFyInput()">
                              </div>
                              </div>
-                           <div class="col-xs-4 form-group">
-                           <label></label>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
                               <div id="fySlider" style="margin-top:12px;"></div>
+                           </div>
                            </div>  
                         </div>
+                        </div>
+
                         <hr class="submit-hr"/>
                         <div class="row">
+                        <div class="col-xs-6">
+                          Current Salary
+                          <div class="row">
                            <div class="col-xs-4">
                              <div class="form-group">
-                             <label for="csesInput">Current Salary</label>
+                             <!-- <label for="ageInput">Your Age</label> -->
                              <input type="number" class="form-control" id="csesInput" name="csesInput" ng-model="cses" ng-change="changeCsesInput()">
                              </div>
                              </div>
-                           <div class="col-xs-4 form-group">
-                           <label></label>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
                               <div id="csesSlider" style="margin-top:12px;"></div>
+                           </div>
                            </div>  
                         </div>
+                        <!-- </div> -->
+                        <!-- <hr class="submit-hr"/> -->
+                        <!-- <div class="row"> -->
+                        <div class="col-xs-6">
+                          Take Home Pay
+                          <div class="row">
+                           <div class="col-xs-4">
+                             <div class="form-group">
+                             <!-- <label for="ageInput">Your Age</label> -->
+                             <input type="number" class="form-control" id="thpInput" name="thpInput" ng-model="thp" ng-change="changeThpInput()">
+                             </div>
+                             </div>
+                           <div class="col-xs-8 form-group">
+                           <!-- <label></label> -->
+                              <div id="thpSlider" style="margin-top:12px;"></div>
+                           </div>
+                           </div>  
+                        </div>
+                        </div>
+
+                        
                         <hr class="submit-hr"  print-remove />
                         <div class="row"  print-remove ng-hide="thpError || csesError">
                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
