@@ -46,7 +46,7 @@ app.service('DonutChartServiceHc',function(){
         plotOptions: {
 
             pie: {
-                animation:false,
+                // animation:false,
                 slicedOffset: 10,
                 // borderWidth: 5,
                 // borderColor: '#EBBA95',
