@@ -730,3 +730,7 @@ p.thpError-text{
 .print-btn button{
 float:right;
 }
+
+.highcharts-container g{
+transform: translate(100,170) !important;
+}
