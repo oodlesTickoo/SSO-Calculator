@@ -252,8 +252,12 @@
                 <button class="btn btn-primary" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
                 </div>
                 </div>
-                <div id="container" ng-show="chartOneOpen" style="margin:0 auto;"></div>
-                <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;"></div>
+                <div class="row">
+                <div class="col-xs-12" id="chartBox">
+                <div id="container" ng-show="chartOneOpen" style="margin:0 auto;width: 327px; height: 400px;"></div>
+                <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;width: 327px; height: 400px;"></div>
+                </div>
+                </div>
                 </div>
                  <div class="col-xs-12 col-sm-5 col-md-5">
                  <div class="row chart-buttons-row print-btn" print-remove onclick="window.print()">
@@ -493,13 +497,13 @@
       <script src="js/hc/donutChartService.js" type="text/javascript"></script>
       <script src="js/hc/chartService.js" type="text/javascript"></script>
       <!-- <script src="js/hc/themes/dark-unica.js" type="text/javascript"></script> -->
-      <script>
+      <!-- <script>
          $(document).ready(function() {
          $('.selectpicker').selectpicker({
              style: 'btn-default',
              size: 5
          });
          });
-      </script>
+      </script> -->
    </body>
 </html>
