@@ -53,6 +53,8 @@ if(pensionDate.getFullYear() >2025){
 rate = 12.00;
 }
 
+console.log(rate);
+
 return rate/100;
 };
 });

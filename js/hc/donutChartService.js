@@ -15,7 +15,9 @@ app.service('DonutChartServiceHc',function(){
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: 0,
-            plotShadow: false
+            plotShadow: false,
+            // height:400,
+            // width:327
         },
         exporting:{
         	enabled:false
