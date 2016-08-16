@@ -1,4 +1,4 @@
-app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService','ChartServiceHc','DonutChartServiceHc',function($scope,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService,ChartServiceHc,DonutChartServiceHc){
+app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService','ChartServiceHc','DonutChartServiceHc',function($scope,$timeout,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService,ChartServiceHc,DonutChartServiceHc){
 
   // $scope.rate = SGCRate.calculateSGCRate(new Date(2011,11,11));
 
@@ -207,6 +207,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
           $scope.needSS = false;
         }
         if($scope.attainableTHP && !$scope.unattainableTHPS){
+
           // ChartService.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
           ChartServiceHc.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
           DonutChartServiceHc.createChart(Number($scope.thpWithoutSS.toFixed(2)),Number($scope.thpWithSS.toFixed(2)),Number(($scope.taxWithoutSS - $scope.taxWithSS).toFixed(2)), Number($scope.optimisedSS.toFixed(2)));
@@ -218,6 +219,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         //     document.getElementById("myChart").style.display="none";
         //   }
         // }
+        // $scope.apply();
         console.log("complete");
       }
       else{
@@ -364,6 +366,7 @@ app.controller("TTRController",['$scope','AgeCalculator','TaxRateCalculator','SG
         //     document.getElementById("myChart").style.display="none";
         //   }
         // }
+        $timeout(0);
         console.log("complete2");
       }
       else{
