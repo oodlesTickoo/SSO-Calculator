@@ -707,6 +707,19 @@ p.thpError-text{
 .result-div{
     border-bottom:1px solid #e2e2e2;
 }
+.form-group .noUi-connect{
+   background: #3FB8AF !important;
+  -webkit-print-color-adjust: exact; 
+}
+.form-group .noUi-background{
+    background: #FAFAFA !important;
+    -webkit-print-color-adjust: exact; 
+}
+
+.form-group .noUi-handle{
+  background: #000 !important;
+    -webkit-print-color-adjust: exact;
+}
 }
 
 .chart-buttons-row{
