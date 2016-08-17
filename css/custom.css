@@ -788,6 +788,7 @@ float:right;
     background: -o-linear-gradient(#263C40, #91B6BE); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(#263C40, #91B6BE); /* For Firefox 3.6 to 15 */
     background: linear-gradient(#263C40, #91B6BE); /* Standard syntax */
+    /*background-color: #91B6BE !important;*/
 }
 
 .form-group .noUi-origin{
