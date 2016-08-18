@@ -794,3 +794,21 @@ float:right;
 .form-group .noUi-origin{
   border-radius:0px !important;
 }
+
+@media (max-width: 767px){
+  .print-dup{
+    display : inline-block !important;
+    float:right !important;
+  }
+  .second-row-mobile{
+    margin-top:-20px;
+  }
+}
+
+
+
+.form-heading{
+  font-family: "Roboto", Helvetica, Verdana, Arial, Sans-serif;
+  font-weight : 300;
+  color : #444;
+}

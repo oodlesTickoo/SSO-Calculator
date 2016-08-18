@@ -281,7 +281,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       'min': [10000],
       'max': [300000]
      },
-    step : 1000,
+    step : 500,
     format: wNumb({
      decimals: 0,
     }),
@@ -294,7 +294,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       'min': [1000],
       'max': [61000]
      },
-    step : 1000,
+    step : 500,
     format: wNumb({
      decimals: 0,
     }),
@@ -408,7 +408,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       'min': 1000,
       'max': Math.floor($scope.maxTHP2)-1
     },
-    step :1000,
+    step :500,
     start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
   });
        $scope.submitForm2(true);

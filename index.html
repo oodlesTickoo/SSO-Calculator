@@ -13,6 +13,7 @@
       <link rel="stylesheet" href="css/font-awesome.css">
       <link rel="stylesheet" href="css/nouislider.min.css">
       <link rel="stylesheet" href="bower_components/angularPrint/angularPrint.css" >
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
    </head>
    <body print-section ng-cloak>
       <div class="otrp-calculator container-fluid " ng-controller="TTRController" >
@@ -38,66 +39,70 @@
                      <form name="ttrForm" class="ttr-form" novalidate ng-submit="submitForm(ttrForm.$valid)">
                         
                         <div class="row">
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-sm-6 form-heading">
                           Age
                           <div class="row">
-                           <div class="col-xs-4">
+                           <div class="col-xs-6 col-sm-4">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
                              <input type="number" class="form-control" id="ageInput" name="ageInput" ng-model="age">
                              </div>
                              </div>
-                           <div class="col-xs-8 form-group">
+                           <div class="col-xs-6 col-sm-8 form-group">
                            <!-- <label></label> -->
-                              <div id="ageSlider" style="margin-top:12px;"></div>
+                              <div id="ageSlider" style="margin-top:8px;"></div>
                            </div>
                            </div>  
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-sm-6 form-heading">
                           Financial Year
                           <div class="row">
-                           <div class="col-xs-4">
+                           <div class="col-xs-6 col-sm-4">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
                              <input type="number" class="form-control" id="fyInput" name="fyInput" ng-model="fy" >
                              </div>
                              </div>
-                           <div class="col-xs-8 form-group">
+                           <div class="col-xs-6 col-sm-8 form-group">
                            <!-- <label></label> -->
-                              <div id="fySlider" style="margin-top:12px;"></div>
+                              <div id="fySlider" style="margin-top:8px;"></div>
                            </div>
                            </div>  
                         </div>
                         </div>
 
-                        <div class="row">
-                        <div class="col-xs-6">
+                        <div class="row second-row-mobile">
+                        <div class="col-xs-12 col-sm-6 form-heading">
+                        <!-- <span class="visible-xs">Current Salary</span> -->
+                          <!-- <span class="hidden-xs">Current Salary Excluding SGC</span> -->
                           Current Salary Excluding SGC
                           <div class="row">
-                           <div class="col-xs-4">
+                           <div class="col-xs-6 col-sm-4">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
                              <input type="number" class="form-control" id="csesInput" name="csesInput" ng-model="cses" >
                              </div>
                              </div>
-                           <div class="col-xs-8 form-group">
+                           <div class="col-xs-6 col-sm-8 form-group">
                            <!-- <label></label> -->
-                              <div id="csesSlider" style="margin-top:12px;"></div>
+                              <div id="csesSlider" style="margin-top:8px;"></div>
                            </div>
                            </div>  
                         </div>
-                        <div class="col-xs-6">
+                        <div class="col-xs-12 col-sm-6 form-heading">
+                          <!-- <span class="visible-xs">Desired Take Home Salary</span> -->
+                          <!-- <span class="hidden-xs">Desired Minimum Take Home Salary Per Annum</span> -->
                           Desired Minimum Take Home Salary Per Annum
                           <div class="row">
-                           <div class="col-xs-4">
+                           <div class="col-xs-6 col-sm-4">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
                              <input type="number" class="form-control" id="thpInput" name="thpInput" ng-model="thp" >
                              </div>
                              </div>
-                           <div class="col-xs-8 form-group">
+                           <div class="col-xs-6 col-sm-8 form-group">
                            <!-- <label></label> -->
-                              <div id="thpSlider" style="margin-top:12px;"></div>
+                              <div id="thpSlider" style="margin-top:8px;"></div>
                            </div>
                            </div>  
                         </div>
@@ -114,6 +119,9 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 <button class="btn btn-primary" ng-click="chartOneOpen = true" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
                 <button class="btn btn-primary" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
+                <button class="btn btn-primary visible-xs hidden-sm* print-dup">
+                  Print Result
+                </button>
                 </div>
                 </div>
                 <div class="row">
@@ -126,7 +134,7 @@
                  <div class="col-xs-12 col-sm-5 col-md-5">
                  <div class="row chart-buttons-row print-btn" print-remove onclick="window.print()">
                 <div class="col-xs-12 col-sm-12 col-md-12">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary hidden-xs">
                   Print Result
                 </button>
                 </div>
