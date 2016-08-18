@@ -151,9 +151,9 @@ app.service('DonutChartServiceHc',function(){
             colorByPoint:true,
             data: [
                 ['THP Without Salary Sacrifice', thpWithoutSSPercentage],
+                ['THP With Salary Sacrifice', thpWithSSPercentage],  
                 ['Tax Savings',taxSavingPercentage],
-                ['Salary Sacrifice', SSPercentage],
-                ['THP With Salary Sacrifice', thpWithSSPercentage]
+                ['Salary Sacrifice', SSPercentage]
             ]
         }]
     },function (chart) {
