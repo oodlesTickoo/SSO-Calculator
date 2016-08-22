@@ -45,7 +45,7 @@
                            <div class="col-xs-4 col-sm-4">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="number" class="form-control" id="ageInput" name="ageInput" ng-model="age">
+                             <input type="number"  onClick="this.select();" class="form-control" id="ageInput" name="ageInput" ng-model="age">
                              </div>
                              </div>
                            <div class="col-xs-8 col-sm-8 form-group">
@@ -60,7 +60,7 @@
                            <div class="col-xs-4 col-sm-4">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="number" class="form-control" id="fyInput" name="fyInput" ng-model="fy" >
+                             <input type="number"  onClick="this.select();" class="form-control" id="fyInput" name="fyInput" ng-model="fy" >
                              </div>
                              </div>
                            <div class="col-xs-8 col-sm-8 form-group">
@@ -80,7 +80,7 @@
                            <div class="col-xs-4 col-sm-4">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="number" class="form-control" id="csesInput" name="csesInput" ng-model="cses" >
+                             <input type="text"  onClick="this.select();" class="form-control" id="csesInput" name="csesInput" ng-model="cses" >
                              </div>
                              </div>
                            <div class="col-xs-8 col-sm-8 form-group">
@@ -97,7 +97,7 @@
                            <div class="col-xs-4 col-sm-4">
                              <div class="form-group">
                              <!-- <label for="ageInput">Your Age</label> -->
-                             <input type="number" class="form-control" id="thpInput" name="thpInput" ng-model="thp" >
+                             <input type="text"  onClick="this.select();" class="form-control" id="thpInput" name="thpInput" ng-model="thp" >
                              </div>
                              </div>
                            <div class="col-xs-8 col-sm-8 form-group">
@@ -119,7 +119,7 @@
                 <div class="col-xs-12 col-sm-12 col-md-12">
                 <button class="btn btn-primary" ng-click="chartOneOpen = true" title="bar chart description" ng-disabled="chartOneOpen"><i class="fa fa-bar-chart"></i></button>
                 <button class="btn btn-primary" ng-click="chartOneOpen = false" title="pie chart description" ng-disabled="!chartOneOpen"><i class="fa fa-pie-chart"></i></button>
-                <button class="btn btn-primary visible-xs hidden-sm* print-dup">
+                <button class="btn btn-primary visible-xs hidden-sm* print-dup" print-remove onclick="window.print()">
                   Print Result
                 </button>
                 </div>
