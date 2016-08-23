@@ -471,7 +471,7 @@ input[type=number] {
 }
 .res-value{
     font-size: 16px;
-        text-align: right;
+        /*text-align: right;*/
         padding-left: 0;
         padding-right: 5px;
 }
