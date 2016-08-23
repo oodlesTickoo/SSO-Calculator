@@ -6,6 +6,10 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
   // $scope.datePension = new Date();
   // $scope.datePension.setMonth(6);
   // $scope.datePension.setDate(1);
+
+  $('#kartik').tooltip();
+
+
   $scope.resultWithSS=[0,0,0];
   $scope.resultWithoutSS=[0,0,0];
 
