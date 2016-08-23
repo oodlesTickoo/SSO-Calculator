@@ -1,26 +1,12 @@
 app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartService','ChartServiceHc','DonutChartServiceHc',function($scope,$timeout,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartService,ChartServiceHc,DonutChartServiceHc){
 
-  // $scope.rate = SGCRate.calculateSGCRate(new Date(2011,11,11));
-
-  // $scope.dob = new Date();
-  // $scope.datePension = new Date();
-  // $scope.datePension.setMonth(6);
-  // $scope.datePension.setDate(1);
   $scope.resultWithSS=[0,0,0];
   $scope.resultWithoutSS=[0,0,0];
 
-  // $scope.excludeSGC = 80000;
-  // $scope.target = 40000;
-
-  // $scope.maxTHP = 0; 
-
-  // $scope.maxTHPError = false;
-
-  // $scope.csesError = false;
-
-  // $scope.thpError = false;
-
-  // $scope.csesZeroError = false;
+  var initDate = new Date();
+  initDate.setYear(1990);
+  initDate.setMonth(5);
+  $scope.dob = initDate;
 
   $scope.chartOneOpen = true;
   
@@ -134,13 +120,6 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       return '';
     }
 
-    // $scope.getAge = function(){
-    //   $scope.age = AgeCalculator.getAge($scope.dob);
-    // }
-
-    // $scope.Math = window.Math;
-
-    // $scope.calculationsDone = false;
 
     $scope.unattainableTHP = false;
 
@@ -156,7 +135,7 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     $scope.overlay = false;
 
 
-    $scope.age = 42;
+    // $scope.age = 42;
 
     $scope.fy = 2017;
 
@@ -165,26 +144,29 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     $scope.thp = 45000;
 
     $scope.maxTHP2 = 0;
+
+    $scope.age = AgeCalculator.getAge($scope.dob,$scope.fy);
+
     
 
-    var ageSlider = document.getElementById('ageSlider'),
-    fySlider = document.getElementById('fySlider'),
+    // var ageSlider = document.getElementById('ageSlider'),
+    var fySlider = document.getElementById('fySlider'),
     csesSlider = document.getElementById('csesSlider'),
     thpSlider = document.getElementById('thpSlider');
 
 
-    noUiSlider.create(ageSlider, {
-     start: [$scope.age],
-     range: {
-      'min': [  18 ],
-      'max': [ 65 ]
-     },
-    step : 1,
-    format: wNumb({
-     decimals: 0,
-    }),
-    connect : 'lower'
-    });
+    // noUiSlider.create(ageSlider, {
+    //  start: [$scope.age],
+    //  range: {
+    //   'min': [  18 ],
+    //   'max': [ 65 ]
+    //  },
+    // step : 1,
+    // format: wNumb({
+    //  decimals: 0,
+    // }),
+    // connect : 'lower'
+    // });
 
     noUiSlider.create(fySlider, {
      start: [$scope.fy],
@@ -242,10 +224,10 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     csesInput = document.getElementById('csesInput'),
     thpInput = document.getElementById('thpInput');
 
-    ageSlider.noUiSlider.on('update', function( values, handle ) {
-    ageInput.value = values[handle];
-    $scope.age = Number(values[handle]);
-    });
+    // ageSlider.noUiSlider.on('update', function( values, handle ) {
+    // ageInput.value = values[handle];
+    // $scope.age = Number(values[handle]);
+    // });
 
     fySlider.noUiSlider.on('update', function( values, handle ) {
     fyInput.value = values[handle];
@@ -306,32 +288,44 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       }
     }
 
+    $scope.ageChange =  function(){
+       var dobText = document.getElementById("dobText"); 
+       // var date_regex = /^\d{1,2}\/\d{1,2}\/\d{4}$/ ;
+       var date_regex = /^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/  ;
+       var correct =  date_regex.test(dobText.value);
+       if(!correct){
+        $scope.dob = initDate;
+       }
+       $scope.age = AgeCalculator.getAge($scope.dob,$scope.fy);
+    $scope.submitForm2(true);
+    }
+
     csesInput.addEventListener("change",function(){
-      if(this.value < 10000){
-        this.value = 10000;
-      }
+      // if(this.value < 10000){
+      //   this.value = 10000;
+      // }
       csesSlider.noUiSlider.set($scope.cses);
     })
 
     $('#thpInput').on("change",function(){
-      if(this.value < 1000){
-        this.value = 1000;
-      }
+      // if(this.value < 1000){
+      //   this.value = 1000;
+      // }
       thpSlider.noUiSlider.set($scope.thp);
       console.log("thp changes input",typeof($scope.thp));
     })
 
-    $('#ageInput').on("change",function(){
-      if(this.value <= 0){
-        this.value = 18;
-      }
-      ageSlider.noUiSlider.set($scope.age);
-    })
+    // $('#ageInput').on("change",function(){
+    //   if(this.value <= 0){
+    //     this.value = 18;
+    //   }
+    //   ageSlider.noUiSlider.set($scope.age);
+    // })
 
     $('#fyInput').on("change",function(){
-      if(this.value < 2016){
-        this.value = 2016;
-      }
+      // if(this.value < 2016){
+      //   this.value = 2016;
+      // }
       fySlider.noUiSlider.set($scope.fy);
     })
 
@@ -346,22 +340,23 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
       'min': 1000,
       'max': Math.floor($scope.maxTHP2)-1
     },
-    step :500,
-    start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
+    // step :500,
+    // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
   });
        $scope.submitForm2(true);
     });
 
-    ageSlider.noUiSlider.on('set', function( values, handle ) {
-    ageInput.value = values[handle];
-    $scope.age = Number(values[handle]);
-    $scope.submitForm2(true);
-    });
+    // ageSlider.noUiSlider.on('set', function( values, handle ) {
+    // ageInput.value = values[handle];
+    // $scope.age = Number(values[handle]);
+    // $scope.submitForm2(true);
+    // });
 
     fySlider.noUiSlider.on('set', function( values, handle ) {
     fyInput.value = values[handle];
     $scope.fy = Number(values[handle]);
-    $scope.submitForm2(true);
+    $scope.ageChange();
+    // $scope.submitForm2(true);
     });
 
     thpSlider.noUiSlider.on('set', function( values, handle ) {

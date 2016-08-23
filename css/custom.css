@@ -813,3 +813,7 @@ float:right;
   font-weight : 300;
   color : #444;
 }
+
+.input-group-addon{
+  padding:4px 10px;
+}
