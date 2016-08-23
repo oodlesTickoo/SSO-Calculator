@@ -8,6 +8,8 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
   initDate.setMonth(5);
   $scope.dob = initDate;
 
+   $('#kartik').tooltip();
+
   $scope.chartOneOpen = true;
   
   $scope.infoShow=function(value){
