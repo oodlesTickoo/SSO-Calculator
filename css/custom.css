@@ -439,9 +439,9 @@ input[type=number] {
     background-color: #6F7070!important;
     color: white;
     /*margin: 10px;*/
-    margin:10px 0px;
+    margin:-6px 0px;
     padding: 10px;
-    margin-bottom: 0;
+    margin-bottom: 6px;
 }
 .res-2{
     background-color: #ddd;
