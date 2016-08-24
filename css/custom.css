@@ -830,3 +830,12 @@ float:right;
 .input-group-addon{
   padding:4px 10px;
 }
+
+@media print{
+  #container .highcharts-container {
+    margin-top: 10px;
+}
+ #donutContainer .highcharts-container {
+    margin-top: 50px;
+    margin-left:10px;
+}
