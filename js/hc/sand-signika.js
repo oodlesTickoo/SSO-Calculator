@@ -51,8 +51,12 @@ var perShapeGradient = {
 Highcharts.theme = {
 	// colors: ["#006DB0", "#4997D0", "#0095B6", "#42C0FB"],
 	// colors: ["#7d2f86","#7b5aa7", "#b478d2",  "#c4a6f7"],
-		// colors: ["#3f7b82","#8bc3b9", "#b4d4c0",  "#acd2bb"],
-		// colors: ["#3f7b82","#558381","#8bc3b9", "#b4d4c0"],
+		// colors: ["#3f7b82","#8bc3b9", "#b4d4c0",  "#acd2bb"], blue1
+		// colors: ["#3f7b82","#558381","#8bc3b9", "#b4d4c0"], blue2
+		// colors: ["#225802","#728239","#88872b","#bbc46b"], green
+	// colors: ["#8298a8","#a5d0d7", "#d0cbb6",  "#d7b0ac"], bright
+	// colors: ["#7c8f78","#5f526a","#6f8266","#c0b6c1"],	 
+
 
 		// colors: ["#FE0001", "#F5DE1D", "#0271BB", "#039349", "#F5DE1D", "#F99321", "#eeaaee",
 		// "#93278B", "#DF5353", "#7798BF", "#aaeeee"],
