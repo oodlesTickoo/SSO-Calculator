@@ -439,9 +439,9 @@ input[type=number] {
     background-color: #6F7070!important;
     color: white;
     /*margin: 10px;*/
-    margin:10px 0px;
+    margin:-6px 0px;
     padding: 10px;
-    margin-bottom: 0;
+    margin-bottom: 6px;
 }
 .res-2{
     background-color: #ddd;
@@ -450,8 +450,17 @@ input[type=number] {
     color: #666;
     font-size: 11px;
     font-weight: bold;
-    margin-top: 5px;
+    margin-top: 15px;
 }
+
+
+.res-1  .row{
+  font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 7px;
+
+}
+
 .res-2 > .col-xs-12 > .row > .col-xs-6{
     padding: 5px 5px 5px 0;
 }
@@ -462,7 +471,9 @@ input[type=number] {
 }
 .res-value{
     font-size: 16px;
-        text-align: right;
+        /*text-align: right;*/
+        padding-left: 0;
+        padding-right: 5px;
 }
 .res-diff{
     /*font-size: 36px;*/
@@ -473,12 +484,14 @@ input[type=number] {
 .res-head{
     /*padding-top: 3px;*/
     /*padding-bottom: 3px;*/
+    padding-left: 0;
+    padding-right: 5px;
 }
 [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
   display: none !important;
 }
 .res-1 strong{
-    font-size: 14px;
+    font-size: 16px;
     text-transform: capitalize;
 }
 .res-2 strong{
@@ -486,7 +499,7 @@ input[type=number] {
     text-transform: capitalize;
 }
 #container .highcharts-container{
-    margin-top:10px;
+    margin-top:0px;
 }
 
 .button-wrapper{
@@ -812,4 +825,17 @@ float:right;
   font-family: "Roboto", Helvetica, Verdana, Arial, Sans-serif;
   font-weight : 300;
   color : #444;
+}
+
+.input-group-addon{
+  padding:4px 10px;
+}
+
+@media print{
+  #container .highcharts-container {
+    margin-top: 10px;
+}
+ #donutContainer .highcharts-container {
+    margin-top: 50px;
+    margin-left:10px;
 }
