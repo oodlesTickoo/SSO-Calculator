@@ -25,7 +25,7 @@ Highcharts.createElement('link', {
 
          for (i = 0; i < 10; i += 1) {
 
-             colors.push(Highcharts.Color(base).brighten((i - 4) / 7).get());
+             colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
          }
          return colors;
      }());
@@ -37,7 +37,7 @@ Highcharts.createElement('link', {
 
          for (i = 0; i < 10; i += 1) {
 
-             colors.push(Highcharts.Color(base).brighten((i - 4) / 7).get());
+             colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
          }
          return colors;
      }());
