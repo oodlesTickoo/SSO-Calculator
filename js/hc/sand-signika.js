@@ -18,7 +18,7 @@ Highcharts.createElement('link', {
 // 	this.container.style.background = 'url(http://www.highcharts.com/samples/graphics/sand.png)';
 // });
      // Make monochrome colors and set them as default for all pies
-     Highcharts.getOptions().plotOptions.pie.colors = (function () {
+/*     Highcharts.getOptions().plotOptions.pie.colors = (function () {
          var colors = [],
              base = Highcharts.getOptions().colors[0],
              i;
@@ -47,10 +47,11 @@ var perShapeGradient = {
             y1: 0,
             x2: 1,
             y2: 0
-        };
+        };*/
 Highcharts.theme = {
 	// colors: ["#006DB0", "#4997D0", "#0095B6", "#42C0FB"],
 	// colors: ["#7d2f86","#7b5aa7", "#b478d2",  "#c4a6f7"],
+	colors: ["#7CB5EC","#434348","#90ed7d","#FFBC75"],
 		// colors: ["#3f7b82","#8bc3b9", "#b4d4c0",  "#acd2bb"], blue1
 		// colors: ["#3f7b82","#558381","#8bc3b9", "#b4d4c0"], blue2
 		// colors: ["#225802","#728239","#88872b","#bbc46b"], green

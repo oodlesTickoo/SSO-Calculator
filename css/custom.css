@@ -441,7 +441,7 @@ input[type=number] {
     /*margin: 10px;*/
     margin:-6px 0px;
     padding: 10px;
-    margin-bottom: 6px;
+    margin-bottom: 15px;
 }
 .res-2{
     background-color: #ddd;
@@ -838,4 +838,19 @@ float:right;
  #donutContainer .highcharts-container {
     margin-top: 50px;
     margin-left:10px;
+}
+}
+
+.largeWidth{
+  margin-top: 25px !important;
+}
+
+.form-control{
+  width:114% !important;
+}
+.dob-input{
+  width:100% !important;
+}
+.slider-common{
+  padding-left: 25px
 }
