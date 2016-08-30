@@ -848,3 +848,9 @@ float:right;
 .form-control{
   width:114% !important;
 }
+.dob-input{
+  width:100% !important;
+}
+.slider-common{
+  padding-left: 25px
+}
