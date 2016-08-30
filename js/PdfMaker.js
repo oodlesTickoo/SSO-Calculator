@@ -100,7 +100,7 @@ var options = {
           doc.text(40, 30, "Salary Sacrifice Optimisation");
           // doc.addImage(imgData2,'PNG',480,20);
           doc.setFontSize(10);
-          doc.addImage(imgData, 'PNG', 150, 240);
+          doc.addImage(imgData, 'PNG', 150, 225);
           doc.autoTable(columns1,rows1,{
             margin:{top:50},
           });
