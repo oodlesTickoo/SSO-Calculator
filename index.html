@@ -47,7 +47,7 @@
                              <div class="input-group">
                               <!-- ng-class="{'err-border' : ttrForm.dob.$invalid }" -->
                                  <input type="text" name="dob" id="dobText" onClick="this.select();"
-                                    class="standard-input form-control" show-button-bar="false"
+                                    class="standard-input form-control dob-input" show-button-bar="false"
                                     uib-datepicker-popup="{{format}}" ng-model="dob" is-open="popup1.opened"
                                     datepicker-options="dateOptions" required close-text="Close" ng-blur="ageChange()"
                                     />
@@ -80,7 +80,7 @@
                              <input type="number"  onClick="this.select();" class="form-control" id="fyInput" name="fyInput" ng-model="fy" >
                              </div>
                              </div>
-                           <div class="col-xs-8 col-sm-8 form-group">
+                           <div class="col-xs-8 col-sm-8 form-group slider-common">
                            <!-- <label></label> -->
                               <div id="fySlider" style="margin-top:8px;"></div>
                            </div>
@@ -100,7 +100,7 @@
                              <input type="text"  onClick="this.select();" class="form-control" id="csesInput" name="csesInput" ng-model="cses" >
                              </div>
                              </div>
-                           <div class="col-xs-8 col-sm-8 form-group">
+                           <div class="col-xs-8 col-sm-8 form-group slider-common">
                            <!-- <label></label> -->
                               <div id="csesSlider" style="margin-top:8px;"></div>
                            </div>
@@ -117,7 +117,7 @@
                              <input type="text"  onClick="this.select();" class="form-control" id="thpInput" name="thpInput" ng-model="thp" >
                              </div>
                              </div>
-                           <div class="col-xs-8 col-sm-8 form-group">
+                           <div class="col-xs-8 col-sm-8 form-group slider-common">
                            <!-- <label></label> -->
                               <div id="thpSlider" style="margin-top:8px;"></div>
                            </div>
@@ -143,8 +143,8 @@
                 </div>
                 <div class="row">
                 <div class="col-xs-12" id="chartBox">
-                <div id="container" ng-show="chartOneOpen" style="margin:0 auto;width: 327px; height: 400px;"></div>
-                <div id="donutContainer" ng-hide="chartOneOpen" style="margin:0 auto;width: 327px; height: 400px;"></div>
+                <div id="container" ng-show="chartOneOpen"  style="margin:0 auto;width: 327px; height: 365px;" ng-class="{largeWidth: needSS}"></div>
+                <div id="donutContainer" ng-hide="chartOneOpen"  style="margin:0 auto;width: 327px; height: 365px; " ng-class="{largeWidth: needSS}"></div>
                 </div>
                 </div>
                 </div>
