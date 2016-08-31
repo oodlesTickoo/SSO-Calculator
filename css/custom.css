@@ -33,12 +33,20 @@
         width: 26px;
     height: 26px;
 }
-.email-icon{
+/*.email-icon{
 	  margin-top:2px;
     background: url("../images/email-icon.png") no-repeat;
     background-color: #91B6BE !important;
         width: 26px;
     height: 21px;
+}*/
+i.fa-floppy-o{
+      background-color: #fff;
+    color: #91b6be;
+    font-size:28px;
+}
+.save-button{
+  padding:0px !important;
 }
 .print-icon{
     background: url("../images/printer-icon.png") no-repeat;
@@ -46,7 +54,7 @@
         width: 25px;
     height: 29px;
 }
-.button{
+.buttons{
     border: none;
     cursor: pointer;
     margin-right: 5px;

@@ -1,5 +1,10 @@
-app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartServiceHc','DonutChartServiceHc',function($scope,$timeout,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartServiceHc,DonutChartServiceHc){
-
+app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalculator','SGCRate','WithoutSSCalculator','WithSSCalculator','ChartServiceHc','DonutChartServiceHc','PdfMaker',function($scope,$timeout,AgeCalculator,TaxRateCalculator,SGCRate,WithoutSSCalculator,WithSSCalculator,ChartServiceHc,DonutChartServiceHc,PdfMaker){
+  
+    String.prototype.replaceAll = function(search, replacement) {
+        var target = this;
+        return target.split(search).join(replacement);
+    };
+    
   $scope.resultWithSS=[0,0,0];
   $scope.resultWithoutSS=[0,0,0];
 
@@ -392,7 +397,14 @@ app.controller("TTRController",['$scope','$timeout','AgeCalculator','TaxRateCalc
     // $scope.attainableTHP = false;
     // }, true);
     
-
+    document.getElementById("download").addEventListener("click",function(){
+      var toggleNeeded = false;
+      if(!$scope.chartOneOpen){
+      document.getElementById("container").classList.toggle("ng-hide");
+      toggleNeeded = true;
+      } 
+      PdfMaker.createChart($scope.dob,$scope.age,$scope.fy,$scope.cses,$scope.thp,$scope.resultWithoutSS,$scope.resultWithSS,$scope.needSS,$scope.optimisedSS,toggleNeeded);
+    });
 
 
 }]);
