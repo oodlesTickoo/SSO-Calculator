@@ -459,7 +459,7 @@ var a=$('svg').toImage();
 
 $timeout(10);
 setTimeout(function(){
-  console.log("yahoooooooooooo");
+  /*console.log("yahoooooooooooo");
   function getStyle(el, styleProp) {
   var camelize = function(str) {
     return str.replace(/\-(\w)/g, function(str, letter) {
@@ -516,7 +516,7 @@ document.getElementById("donutContainer").appendChild(elem1);
 elem.src=canvas.toDataURL(
             'image/png');
 elem1.src=canvas.toDataURL(
-            'image/png');
+            'image/png');*/
 
 
 
