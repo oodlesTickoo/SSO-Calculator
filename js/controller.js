@@ -225,7 +225,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         var cses1 = $scope.cses.replace("$", "").replace(",", "");
         var thp1 = $scope.thp.replace("$", "").replace(",", "");
         $scope.maxTHP2 = Math.floor(WithoutSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), Number(thp1), true));
-        console.log($scope.maxTHP2)
+        // console.log($scope.maxTHP2)
     }
 
     var ageInput = document.getElementById('ageInput'),
@@ -266,13 +266,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $scope.needSS = true;
             $scope.calculationsDone = true;
             $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), Number(thp1), false);
-            console.log("rw/oss", $scope.resultWithoutSS.toString());
+            // console.log("rw/oss", $scope.resultWithoutSS.toString());
             $scope.thpWithoutSS = $scope.resultWithoutSS[0];
             $scope.taxWithoutSS = $scope.resultWithoutSS[1];
             $scope.finalAmountWithoutSS = $scope.resultWithoutSS[2];
             $scope.unattainableTHPS = $scope.resultWithoutSS[3];
             $scope.resultWithSS = WithSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), Number(thp1), $scope.taxWithoutSS);
-            console.log("rwss", $scope.resultWithSS.toString());
+            // console.log("rwss", $scope.resultWithSS.toString());
             $scope.thpWithSS = $scope.resultWithSS[0];
             $scope.taxWithSS = $scope.resultWithSS[1];
             $scope.finalAmountWithSS = $scope.resultWithSS[2];
