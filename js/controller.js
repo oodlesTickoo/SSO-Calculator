@@ -349,14 +349,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
         $scope.calculateMaxTHP2();
 
-        // thpSlider.noUiSlider.updateOptions({
-        //     range: {
-        //         'min': 1000,
-        //         'max': Math.floor($scope.maxTHP2) - 1
-        //     },
-        //     // step :500,
-        //     // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
-        // });
+        thpSlider.noUiSlider.updateOptions({
+            range: {
+                'min': 1000,
+                'max': Math.floor($scope.maxTHP2) - 1
+            },
+            // step :500,
+            // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
+        });
         $scope.submitForm2(true);
     });
 
