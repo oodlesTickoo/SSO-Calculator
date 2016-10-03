@@ -33,7 +33,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     $scope.firstDP = function() {
         $scope.dateOptions.maxDate = new Date($scope.fy - 18, 5, 30);
         $scope.dateOptions.minDate = new Date(1950, 0, 1);
-        console.log("firstDp", $scope.dateOptions.minDate);
+        // console.log("firstDp", $scope.dateOptions.minDate);
     }
 
     $scope.secondDp = function() {
@@ -299,22 +299,12 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
     $scope.ageChange = function() {
         var dobText = document.getElementById("dobText");
-        // console.log("dobText",new Date(dobText.value));
         var dateString = dobText.value;
         var dateArr = dateString.split("/");
 
         var date_regex = /^([1-9]|0[1-9]|1\d|2\d|3[01])\/(0[1-9]|[1-9]|1[0-2])\/(19[5-9][0-9])$/;
         var correct = date_regex.test(dobText.value);
         var fd = new Date(dateArr[2], dateArr[1] - 1, dateArr[0]);
-        // console.log("fd",fd);
-        // console.log("correct",correct);
-        // console.log("ins of",fd instanceof Date);
-        // console.log("is Finite",isFinite(fd));
-
-        // console.log("date",new Date(dateArr[2],dateArr[1]-1,dateArr[0]));
-        // console.log(finalDs instanceof Date);
-        // console.log("c1",(fd.getMonth() + 1),Number(dateArr[1]));
-        // console.log("c2",fd.getDate(),Number(dateArr[0]));
         if (((fd.getMonth() + 1) === Number(dateArr[1]) && fd.getDate() === Number(dateArr[0])) && correct) {
             $scope.dob = fd;
         } else {
@@ -336,7 +326,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         //   this.value = 1000;
         // }
         thpSlider.noUiSlider.set($scope.thp);
-        console.log("thp changes input", typeof($scope.thp));
+        // console.log("thp changes input", typeof($scope.thp));
     })
 
     // $('#ageInput').on("change",function(){
@@ -359,14 +349,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
         $scope.calculateMaxTHP2();
 
-        thpSlider.noUiSlider.updateOptions({
-            range: {
-                'min': 1000,
-                'max': Math.floor($scope.maxTHP2) - 1
-            },
-            // step :500,
-            // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
-        });
+        // thpSlider.noUiSlider.updateOptions({
+        //     range: {
+        //         'min': 1000,
+        //         'max': Math.floor($scope.maxTHP2) - 1
+        //     },
+        //     // step :500,
+        //     // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
+        // });
         $scope.submitForm2(true);
     });
 
