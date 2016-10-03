@@ -8,7 +8,7 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator
             datePension.setDate(2);
             datePension.setMonth(6);
             console.log(datePension);
-            var sgc=SGCRate.calculateSGCRate(datePension)*excludeSGC;
+            var sgc=SGCRate.calculateSGCRate(datePension)*excludeSGC > 19615.60 ? 19615.60 : SGCRate.calculateSGCRate(datePension)*excludeSGC;
             var concessionalContributionCap;
             concessionalContributionCap=age<49?30000:35000;
             var concessionalContributionTax=0.15;

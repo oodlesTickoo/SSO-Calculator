@@ -5,13 +5,13 @@ app.service('WithSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',f
             var datePension =  new Date;
             datePension.setYear(fy);
             datePension.setDate(2);
-            datePension.setMonth(5);
+            datePension.setMonth(6);
             var concessionalContributionCap;
             concessionalContributionCap=age<49?30000:35000;
             var concessionalContributionTax=0.15;
             var excessContributionTax=0.32;
 
-            var totalEmployerContribution = SGCRate.calculateSGCRate(datePension)*excludeSGC;
+            var totalEmployerContribution = SGCRate.calculateSGCRate(datePension)*excludeSGC > 19615.60 ? 19615.60 : SGCRate.calculateSGCRate(datePension)*excludeSGC;
 
             // var validEmployerContribution;
 
