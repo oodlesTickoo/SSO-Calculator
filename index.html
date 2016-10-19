@@ -24,8 +24,8 @@
                 <h1>Salary Sacrifice Optimisation</h1>
             </div>
             <div print-hide class=" button-wrapper col-xs-4 col-sm-3 col-md-3">
-                <button type="button" class="buttons button print-icon" onclick="window.print()"></button>
-                <button type="button" class="buttons button save-button" id="download" title="Save as PDF" role="button" aria-controls="email-overlay"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
+                <button type="button" class="buttons button print-icon" ng-disabled="forms.ttrForm.$invalid" onclick="window.print()"></button>
+                <button type="button" class="buttons button save-button" id="download" ng-disabled="forms.ttrForm.$invalid" title="Save as PDF" role="button" aria-controls="email-overlay"><i class="fa fa-floppy-o" aria-hidden="true"></i></button>
                 <button type="button" class="buttons button info-icon" ng-click="infoShow(true)" title="Information"></button>
             </div>
         </div>
@@ -66,56 +66,49 @@
                             <span class="title-wrapper">Your Details</span>
                             <div class="otrp-clear"></div>
                         </div>
-                        <form name="forms.ttrForm" class="ttr-form">
+                        <form name="forms.ttrForm" class="ttr-form" novalidate ng-submit="submitForm2(forms.ttrForm.$valid)">
                             <div class="row">
                                 <div class="col-xs-6">
-                                    <div class="form-group" 
-                                    ng-class="{'has-error': !forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid}">
+                                    <div class="form-group"> 
+                                    <!-- ng-class="{'has-error': !forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid , 'has-error': forms.ttrForm.firstName.$pristine &&
+                                     forms.ttrForm.$submitted }" -->
+                                     <!-- > -->
                                         <label for="first-name">First Name *</label>
                                         <input type="text" class="form-control" ng-model="firstName" name="firstName" id="first-name" required>
-                                        <p class="err-msg" ng-show="!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid">Please enter your first name</p>
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.firstName.$pristine && forms.ttrForm.firstName.$invalid) || 
+                                        (forms.ttrForm.firstName.$pristine 
+                                        &&
+                                     forms.ttrForm.$submitted)">Please Enter Your First Name</p>
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
-                                    <div class="form-group" ng-class="{'has-error': !forms.ttrForm.lastName.$pristine 
-                                    && forms.ttrForm.lastName.$invalid}">
+                                    <div class="form-group">
                                         <label for="last-name">Last Name *</label>
                                         <input type="text" name="lastName" ng-model="lastName" class="form-control" id="last-name" required>
-                                        <p class="err-msg" ng-show="!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid">Please enter your last name</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-6">
-                                    <div class="form-group" ng-class="{'has-error': !forms.ttrForm.email.$pristine 
-                                    && forms.ttrForm.email.$invalid}">
-                                        <label for="email">Email Address *</label>
-                                        <input type="email" name="email" ng-model="email" class="form-control" id="email" required>
-                                        <p class="err-msg" ng-show="!forms.ttrForm.email.$pristine && forms.ttrForm.email.$invalid">Please enter a valid email address</p>
-                                    </div>
-                                </div>
-                                <div class="col-xs-6">
-                                    <div class="form-group" ng-class="{'has-error': !forms.ttrForm.mobile.$pristine 
-                                    && forms.ttrForm.mobile.$invalid}">
-                                        <label for="mobile-number">Mobile Number *</label>
-                                        <input type="number" name="mobile" ng-model="mobile" class="form-control" id="mobile-number" required ng-minlength="8" ng-maxlength="8">
-                                        <p class="err-msg" ng-show="!forms.ttrForm.mobile.$pristine && forms.ttrForm.mobile.$invalid">Please enter valid mobile number</p>
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.lastName.$pristine && forms.ttrForm.lastName.$invalid) || (forms.ttrForm.lastName.$pristine 
+                                        &&
+                                     forms.ttrForm.$submitted)">Please Enter Your Last Name</p>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-xs-6">
                                     <div class="form-group">
-                                        <label for="address">Address</label>
-                                        <textarea class="form-control" name="address" ng-model="address" id="address"></textarea>
+                                        <label for="email">Email Address *</label>
+                                        <input type="email" name="email" ng-model="email" class="form-control" id="email" required>
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.email.$pristine && forms.ttrForm.email.$invalid) || (forms.ttrForm.email.$pristine 
+                                        &&
+                                     forms.ttrForm.$submitted)">Please Enter A Valid Email Address</p>
+                                        <!-- <p class="err-msg" ng-show="forms.ttrForm.$error.required">Please enter a valid email addres</p> -->
                                     </div>
                                 </div>
                                 <div class="col-xs-6">
-                                    <div class="form-group" ng-class="{'has-error': !forms.ttrForm.postalCode.$pristine 
-                                    && forms.ttrForm.postalCode.$invalid}">
-                                        <label for="postal-code">Postal Code</label>
-                                        <input type="number" name="postalCode" ng-model="postalCode" class="form-control" id="postal-code" ng-minlength="6" ng-maxlength="6">
-                                        <p class="err-msg" ng-show="forms.ttrForm.postalCode.$invalid">Enter valid postal code</p> 
+                                    <div class="form-group">
+                                        <label for="mobile-number">Mobile Number *</label>
+                                        <input type="number" name="mobile" ng-model="mobile" class="form-control" id="mobile-number" required ng-minlength="8" ng-maxlength="8">
+                                        <p class="err-msg" ng-show="(!forms.ttrForm.mobile.$pristine && forms.ttrForm.mobile.$invalid) || (forms.ttrForm.mobile.$pristine 
+                                        &&
+                                     forms.ttrForm.$submitted)">Please Enter A Valid Mobile Number</p>
                                     </div>
                                 </div>
                             </div>
@@ -199,6 +192,26 @@
                                         </div>
                                     </div>
                                 </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="address">Address</label>
+                                        <textarea class="form-control" name="address" ng-model="address" id="address"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-xs-6">
+                                    <div class="form-group">
+                                        <label for="postal-code">Postal Code</label>
+                                        <input type="number" name="postalCode" ng-model="postalCode" class="form-control" id="postal-code" ng-minlength="6" ng-maxlength="6">
+                                        <p class="err-msg" ng-show="forms.ttrForm.postalCode.$invalid">Enter Valid Postal Code</p> 
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-xs-12">
+                                <button print-remove class="btn btn-block btn-primary" type="submit" style="width:25% ; margin:0 auto;">Calculate Result</button>
+                              </div>
                             </div>
                         </form>
                     </div>
@@ -300,6 +313,23 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
         <div class="row information-overlay" print-hide>
             <div class="col-xs-12 col-sm-12 col-lg-12 ">
                 <div class="row info-title">

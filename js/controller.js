@@ -313,7 +313,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $scope.dob = initDate;
         }
         $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
-        $scope.submitForm2(true);
+        // $scope.submitForm2(true);
     }
 
     csesInput.addEventListener("change", function() {
@@ -359,7 +359,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             // step :500,
             // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
         });
-        $scope.submitForm2(true);
+        // $scope.submitForm2(true);
     });
 
     // ageSlider.noUiSlider.on('set', function( values, handle ) {
@@ -378,7 +378,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     thpSlider.noUiSlider.on('set', function(values, handle) {
         thpInput.value = values[handle];
         $scope.thp = (values[handle]);
-        $scope.submitForm2(true);
+        // $scope.submitForm2(true);
     });
 
     $scope.submitForm2(true);
@@ -397,7 +397,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         }
         PdfMaker.createChart($scope.dob, $scope.age, $scope.fy, $scope.cses, $scope.thp, $scope.resultWithoutSS, $scope.resultWithSS, $scope.needSS, $scope.optimisedSS, toggleNeeded);
       }else{
-        alert("input error");
+        $('#myModal').modal('show');
       }  
     });
 

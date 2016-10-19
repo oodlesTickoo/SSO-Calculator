@@ -834,5 +834,11 @@ float:right;
 }
 p.err-msg{
   margin:5px 0 0;
-  color:red;
+  color:green;
+}
+.btn-primary,.btn-primary:hover,.btn-primary:focus{
+  background-color: #91B6BE !important;
+  border:none !important;
+  outline: none !important;
+  border-radius:0px; 
 }
