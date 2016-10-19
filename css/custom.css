@@ -821,11 +821,18 @@ float:right;
 }
 
 .form-control{
-  width:114% !important;
+  /*width:114% !important;*/
 }
 .dob-input{
   width:100% !important;
 }
 .slider-common{
   padding-left: 25px
+}
+.form-group label{
+  font-weight:normal;
+}
+p.err-msg{
+  margin:5px 0 0;
+  color:red;
 }
