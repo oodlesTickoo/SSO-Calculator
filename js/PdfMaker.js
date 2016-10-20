@@ -1,6 +1,10 @@
 app.service('PdfMaker', [function() {
 
-    this.createChart = function(dob, age, fy, cses, thp, resultWithoutSS, resultWithSS, needSS, optimisedSS, toggleNeeded) {
+    this.createChart = function(personalDetails,dob, age, fy, cses, thp, resultWithoutSS, resultWithSS, needSS, optimisedSS, toggleNeeded) {
+
+        // console.log(personalDetails.address);
+
+        var fullName = personalDetails.firstName.trim() + " " + personalDetails.lastName.trim();
 
         var cdob = dob.toString().split(" ")[1] + " " + dob.toString().split(" ")[2] + " " + dob.toString().split(" ")[3];
 
@@ -80,17 +84,28 @@ app.service('PdfMaker', [function() {
                     { title: "Values", dataKey: "country" },
                 ];
                 var rows1 = [
+                    { "name": "Full Name", "country": fullName},
                     { "name": "Date Of Birth", "country": cdob },
                     { "name": "Age", "country": age },
+                    { "name": "Mobile Number", "country":  personalDetails.mobile},
+                    { "name": "Email Address", "country": personalDetails.email.trim()},
                     { "name": "Financial Year/Tax Year", "country": fy },
                     { "name": "Current Salary Exclude Super", "country": moneyFormat.to(Number(cses.replace('$', '').replaceAll(',', ''))) },
-                    // { "name": "Net Return In Accumulation Phase", "country": nra},
-                    // { "name": "Tax Free Percentage Of Your Current Superannuation Balance", "country":tfp},
-                    // { "name": "Superannuation Balance As At The Transition to Retirement Strategy Implementation Date", "country": beforeTTR},
-                    // { "name": "Net Return In Pension Phase", "country":nrp},
                     { "name": "Desired Minimum Take Home Salary Per Annum", "country": moneyFormat.to(Number(thp.replace('$', '').replaceAll(',', ''))) },
 
                 ];
+
+                if(personalDetails.address !== undefined && personalDetails.address.length !== 0){
+                    rows1.push(
+                        { "name": "Address", "country": personalDetails.address.trim().replaceAll('\n',' ') }
+                    );
+                }
+
+                if(personalDetails.address !== undefined){
+                    rows1.push(
+                        { "name": "Postal Code", "country": personalDetails.postalCode }
+                    );
+                }
 
                 var columns2 = [
                     { title: "Differentiated Upon", dataKey: "name" },
@@ -129,10 +144,13 @@ app.service('PdfMaker', [function() {
                 });
                 doc.autoTable(columns1, rows1, {
                     margin: { top: 80 },
+                    styles:{
+                        overflow:'linebreak'
+                    }
                 });
 
                 doc.autoTable(columnsP2, [], {
-                    margin: { top: 220 },
+                    margin: { top: 360 },
                     styles: {
                         rowHeight: 30,
                         halign: 'left',
@@ -140,29 +158,45 @@ app.service('PdfMaker', [function() {
                         fontSize: 15
                     }
                 });
-                doc.addImage(imgData, 'PNG', 150, 265);
+                doc.addImage(imgData, 'PNG', 150, 420);
 
-                doc.autoTable(columns2, rows2, {
-                    margin: { top: 580 },
-                });
-                doc.autoTable(columns3, [], {
-                    margin: { top: 700 },
-                    styles: {
-                        fontSize: 14,
-                        overflow: 'linebreak',
-                        valign: 'middle',
-                        fillColor: 255,
-                        textColor: 0
-                            // cellPadding : 10
-                    }
-                });
+                // doc.autoTable(columns2, rows2, {
+                //     margin: { top: 640 },
+                // });
+                // doc.autoTable(columns3, [], {
+                //     margin: { top: 750 },
+                //     styles: {
+                //         fontSize: 14,
+                //         overflow: 'linebreak',
+                //         valign: 'middle',
+                //         fillColor: 255,
+                //         textColor: 0
+                //             // cellPadding : 10
+                //     }
+                // });
                 doc.addImage(imgData2, 'PNG', 40, 780);
                 doc.setFontSize(10);
                 doc.text(510, 810, 'PAGE ' + 1);
                 doc.addPage();
 
-                doc.autoTable(columnsP3, rowsP3, {
+                doc.autoTable(columns2, rows2, {
                     margin: { top: 20 },
+                });
+
+                doc.autoTable(columns3, [], {
+                    margin: { top: 120 },
+                    styles: {
+                        fontSize: 14,
+                        overflow: 'linebreak',
+                        valign: 'middle',
+                        // fillColor: 255,
+                        // textColor: 0
+                            // cellPadding : 10
+                    }
+                });
+
+                doc.autoTable(columnsP3, rowsP3, {
+                    margin: { top: 200 },
                     styles: {
                         //   rowHeight:40,
                         //   halign : 'left',

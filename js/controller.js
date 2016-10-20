@@ -16,7 +16,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     initDate.setDate(1);
     $scope.dob = initDate;
 
-    // $('#kartik').tooltip();
+    $scope.personalDetails = {};
 
     $scope.chartOneOpen = true;
 
@@ -294,9 +294,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $timeout(0);
             // console.log("complete2");
         }
-        // else{
-        //   console.log("has errors");
-        // }
+        else{
+                $('#myModal').modal('show');
+        }
     }
 
     $scope.ageChange = function() {
@@ -395,11 +395,21 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             document.getElementById("container").classList.toggle("ng-hide");
             toggleNeeded = true;
         }
-        PdfMaker.createChart($scope.dob, $scope.age, $scope.fy, $scope.cses, $scope.thp, $scope.resultWithoutSS, $scope.resultWithSS, $scope.needSS, $scope.optimisedSS, toggleNeeded);
+        PdfMaker.createChart($scope.personalDetails,$scope.dob, $scope.age, $scope.fy, $scope.cses, $scope.thp, $scope.resultWithoutSS, $scope.resultWithSS, $scope.needSS, $scope.optimisedSS, toggleNeeded);
       }else{
         $('#myModal').modal('show');
       }  
     });
+
+     $(".print-doc").on("click",printReport);
+
+     function printReport(){
+       if($scope.forms.ttrForm.$valid){
+        print();
+      }else{
+        $('#myModal').modal('show');
+      }  
+     }
 
 
 }]);
