@@ -72,7 +72,7 @@
                                         <label for="mobile-number">Mobile Number *</label>
                                         <input type="number" name="mobile" ng-model="personalDetails.mobile" class="form-control" id="mobile-number" required 
                                         onClick="this.select();"
-                                        ng-pattern="/^(0[2-4]|0[7-8])\d{8}$/g">
+                                        ng-pattern="/^(04)\d{8}$/g">
                                         <p class="err-msg" ng-show="(!forms.ttrForm.mobile.$pristine && forms.ttrForm.mobile.$invalid)">Enter a valid mobile number</p>
                                     </div>
                                 </div>
