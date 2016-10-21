@@ -97,11 +97,11 @@ app.service('PdfMaker', [function() {
 
                 if(personalDetails.address !== undefined && personalDetails.address.length !== 0){
                     rows1.push(
-                        { "name": "Address", "country": personalDetails.address.trim().replaceAll('\n',' ') }
+                        { "name": "Address", "country": personalDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ") }
                     );
                 }
 
-                if(personalDetails.address !== undefined){
+                if(personalDetails.postalCode){
                     rows1.push(
                         { "name": "Postal Code", "country": personalDetails.postalCode }
                     );
@@ -143,7 +143,7 @@ app.service('PdfMaker', [function() {
                     }
                 });
                 doc.autoTable(columns1, rows1, {
-                    margin: { top: 80 },
+                    margin: { top: 90 },
                     styles:{
                         overflow:'linebreak'
                     }
