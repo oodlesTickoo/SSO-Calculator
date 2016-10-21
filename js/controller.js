@@ -5,6 +5,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         return target.split(search).join(replacement);
     };
 
+    $scope.forms = {};
+
     $scope.resultWithSS = [0, 0, 0];
     $scope.resultWithoutSS = [0, 0, 0];
 
@@ -14,7 +16,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     initDate.setDate(1);
     $scope.dob = initDate;
 
-    // $('#kartik').tooltip();
+    $scope.personalDetails = {};
 
     $scope.chartOneOpen = true;
 
@@ -292,9 +294,9 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $timeout(0);
             // console.log("complete2");
         }
-        // else{
-        //   console.log("has errors");
-        // }
+        else{
+                $('#myModal').modal('show');
+        }
     }
 
     $scope.ageChange = function() {
@@ -311,7 +313,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $scope.dob = initDate;
         }
         $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
-        $scope.submitForm2(true);
+        // $scope.submitForm2(true);
     }
 
     csesInput.addEventListener("change", function() {
@@ -357,7 +359,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             // step :500,
             // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
         });
-        $scope.submitForm2(true);
+        // $scope.submitForm2(true);
     });
 
     // ageSlider.noUiSlider.on('set', function( values, handle ) {
@@ -376,7 +378,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     thpSlider.noUiSlider.on('set', function(values, handle) {
         thpInput.value = values[handle];
         $scope.thp = (values[handle]);
-        $scope.submitForm2(true);
+        // $scope.submitForm2(true);
     });
 
     $scope.submitForm2(true);
@@ -387,13 +389,27 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     // }, true);
 
     document.getElementById("download").addEventListener("click", function() {
+        if($scope.forms.ttrForm.$valid){
         var toggleNeeded = false;
         if (!$scope.chartOneOpen) {
             document.getElementById("container").classList.toggle("ng-hide");
             toggleNeeded = true;
         }
-        PdfMaker.createChart($scope.dob, $scope.age, $scope.fy, $scope.cses, $scope.thp, $scope.resultWithoutSS, $scope.resultWithSS, $scope.needSS, $scope.optimisedSS, toggleNeeded);
+        PdfMaker.createChart($scope.personalDetails,$scope.dob, $scope.age, $scope.fy, $scope.cses, $scope.thp, $scope.resultWithoutSS, $scope.resultWithSS, $scope.needSS, $scope.optimisedSS, toggleNeeded);
+      }else{
+        $('#myModal').modal('show');
+      }  
     });
+
+     $(".print-doc").on("click",printReport);
+
+     function printReport(){
+       if($scope.forms.ttrForm.$valid){
+        print();
+      }else{
+        $('#myModal').modal('show');
+      }  
+     }
 
 
 }]);
