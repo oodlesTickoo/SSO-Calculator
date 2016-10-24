@@ -2,9 +2,17 @@ app.service('PdfMaker', [function() {
 
     this.createChart = function(personalDetails,dob, age, fy, cses, thp, resultWithoutSS, resultWithSS, needSS, optimisedSS, toggleNeeded) {
 
-        // console.log(personalDetails.address);
+        function reduceToCapitalize(nameArr){
+            if(nameArr.length < 2){
+                var name = nameArr[0];
+           return name[0].toUpperCase() + name.slice(1); 
+            }
+           return nameArr.reduce(function(first,second){
+                return first[0].toUpperCase() + first.slice(1) + " " + second[0].toUpperCase() + second.slice(1)
+            })
+        }
 
-        var fullName = personalDetails.firstName.trim() + " " + personalDetails.lastName.trim();
+        var fullName = reduceToCapitalize((personalDetails.firstName.trim() + " " + personalDetails.lastName.trim()).split(' '));
 
         var cdob = dob.toString().split(" ")[1] + " " + dob.toString().split(" ")[2] + " " + dob.toString().split(" ")[3];
 
@@ -97,13 +105,23 @@ app.service('PdfMaker', [function() {
 
                 if(personalDetails.address !== undefined && personalDetails.address.length !== 0){
                     rows1.push(
-                        { "name": "Address", "country": personalDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ") }
+                        { "name": "Address", "country": reduceToCapitalize(personalDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ").split(" ")) }
                     );
                 }
 
                 if(personalDetails.postalCode){
+                    var postCode;
+                    if(personalDetails.postalCode < 10){
+                        postCode = "000" + personalDetails.postalCode
+                    }
+                    if(personalDetails.postalCode >= 10 && personalDetails.postalCode < 100){
+                        postCode = "00" + personalDetails.postalCode
+                    }
+                    if(personalDetails.postalCode >= 100 && personalDetails.postalCode < 1000){
+                        postCode = "0" + personalDetails.postalCode
+                    }
                     rows1.push(
-                        { "name": "Postal Code", "country": personalDetails.postalCode }
+                        { "name": "Postal Code", "country": postCode }
                     );
                 }
 
@@ -146,11 +164,17 @@ app.service('PdfMaker', [function() {
                     margin: { top: 90 },
                     styles:{
                         overflow:'linebreak'
-                    }
+                    },
+                    columnStyles:{
+            name: {columnWidth: 367},
+            country: {columnWidth: 150}
+            }
                 });
 
+                var top = doc.autoTableEndPosY();
+
                 doc.autoTable(columnsP2, [], {
-                    margin: { top: 360 },
+                    margin: { top: top + 40 },
                     styles: {
                         rowHeight: 30,
                         halign: 'left',
@@ -158,7 +182,10 @@ app.service('PdfMaker', [function() {
                         fontSize: 15
                     }
                 });
-                doc.addImage(imgData, 'PNG', 150, 420);
+
+                top = doc.autoTableEndPosY();
+
+                doc.addImage(imgData, 'PNG', 150, top + 60);
 
                 // doc.autoTable(columns2, rows2, {
                 //     margin: { top: 640 },
@@ -185,8 +212,7 @@ app.service('PdfMaker', [function() {
 
                 doc.autoTable(columns3, [], {
                     margin: { top: 120 },
-                    styles: {
-                        fontSize: 14,
+                    styles:{
                         overflow: 'linebreak',
                         valign: 'middle',
                         // fillColor: 255,
