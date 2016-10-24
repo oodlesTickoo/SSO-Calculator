@@ -95,7 +95,7 @@ app.service('PdfMaker', [function() {
                     { "name": "Full Name", "country": fullName},
                     { "name": "Date Of Birth", "country": cdob },
                     { "name": "Age", "country": age },
-                    { "name": "Mobile Number", "country":  personalDetails.mobile},
+                    { "name": "Mobile Number", "country": "0" + personalDetails.mobile},
                     { "name": "Email Address", "country": personalDetails.email.trim()},
                     { "name": "Financial Year/Tax Year", "country": fy },
                     { "name": "Current Salary Exclude Super", "country": moneyFormat.to(Number(cses.replace('$', '').replaceAll(',', ''))) },
@@ -109,7 +109,7 @@ app.service('PdfMaker', [function() {
                     );
                 }
 
-                if(personalDetails.postalCode){
+                if(personalDetails.postalCode != undefined){
                     var postCode;
                     if(personalDetails.postalCode < 10){
                         postCode = "000" + personalDetails.postalCode
