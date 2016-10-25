@@ -870,5 +870,9 @@ input:-webkit-autofill {
     -webkit-box-shadow: inset 0 0 0px 9999px white;
 }*/
 input:-webkit-autofill {
-    -webkit-box-shadow: inset 0 0 0px 9999px white !important;
+    -webkit-box-shadow: inset 0 0 0px 9999px #f6f8f9 !important;
+}
+
+.form-control{
+      background-color: #f6f8f9;
 }
