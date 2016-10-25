@@ -296,6 +296,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         }
         else{
                 $('#myModal').modal('show');
+                $("html, body").animate({ scrollTop: 0 }, "slow");
         }
     }
 
@@ -408,6 +409,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         print();
       }else{
         $('#myModal').modal('show');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
       }  
      }
 
