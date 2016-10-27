@@ -103,11 +103,11 @@ app.service('PdfMaker', [function() {
 
                 ];
 
-                if(personalDetails.address !== undefined && personalDetails.address.length !== 0){
-                    rows1.push(
-                        { "name": "Address", "country": reduceToCapitalize(personalDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ").split(" ")) }
-                    );
-                }
+                // if(personalDetails.address !== undefined && personalDetails.address.length !== 0){
+                //     rows1.push(
+                //         { "name": "Address", "country": reduceToCapitalize(personalDetails.address.trim().replaceAll('\n',' ').replace(/\s+/g, " ").split(" ")) }
+                //     );
+                // }
 
                 if(personalDetails.postalCode != undefined){
                     var postCode = personalDetails.postalCode;
@@ -210,8 +210,10 @@ app.service('PdfMaker', [function() {
                     margin: { top: 20 },
                 });
 
+                top = doc.autoTableEndPosY();
+
                 doc.autoTable(columns3, [], {
-                    margin: { top: 120 },
+                    margin: { top: top+30 },
                     styles:{
                         overflow: 'linebreak',
                         valign: 'middle',
