@@ -212,7 +212,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         start: [$scope.thp],
         range: {
             'min': [1000],
-            'max': [61000]
+            'max': [46500]
         },
         step: 500,
         format: wNumb({
@@ -230,6 +230,14 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         // console.log(1,$scope.maxTHP1);
         $scope.maxTHP2 = Math.floor(WithSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1),true));
         // console.log(2,$scope.maxTHP2);
+
+                thpSlider.noUiSlider.updateOptions({
+            range: {
+                'min': 1000,
+                'max': Math.floor($scope.maxTHP2)
+            },
+        });
+
     }
 
     var ageInput = document.getElementById('ageInput'),
@@ -316,6 +324,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $scope.dob = initDate;
         }
         $scope.age = AgeCalculator.getAge($scope.dob, $scope.fy);
+        $scope.calculateMaxTHP2();
+
         // $scope.submitForm2(true);
     }
 
@@ -353,16 +363,6 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $scope.cses = (values[handle]);
 
         $scope.calculateMaxTHP2();
-
-        thpSlider.noUiSlider.updateOptions({
-            range: {
-                'min': 1000,
-                'max': Math.floor($scope.maxTHP2) - 1
-            },
-            // step :500,
-            // start: Math.floor($scope.maxTHP2) >= $scope.thp ? $scope.thp : $scope.maxTHP2
-        });
-        // $scope.submitForm2(true);
     });
 
     // ageSlider.noUiSlider.on('set', function( values, handle ) {
