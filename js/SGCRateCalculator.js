@@ -3,8 +3,6 @@ var SGCRateService = angular.module('SGCRateService', [])
 
 this.calculateSGCRate = function(pensionDate){
 
-  // console.log(pensionDate);
-
 var rate;
 
 if(pensionDate.getFullYear() < 2015){
@@ -54,8 +52,6 @@ if(pensionDate.getFullYear() === 2025 && pensionDate.getMonth() >= 6){
 if(pensionDate.getFullYear() >2025){
 rate = 12.00;
 }
-
-// console.log(rate);
 
 return rate/100;
 };
