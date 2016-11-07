@@ -1,7 +1,7 @@
 
 //var WithoutSSCalculatorService = angular.module('WithoutSSCalculatorService', [])
 app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator',function(TaxRateCalculator,SGCRate,AgeCalculator){
-        this.getFinalAmount = function(age,fy,excludeSGC,minTakeHomePay,maxTHPCalculation){
+        this.getFinalAmount = function(age,fy,excludeSGC){
             // var age = AgeCalculator.getAge(dob,datePension.getFullYear());
             var datePension =  new Date;
             datePension.setYear(fy);
@@ -18,9 +18,7 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator
             var assessableAnnualIncome=grossAnnualIncomebeforeSGC-additionalConcessionalContribution;
             var personalTax= TaxRateCalculator.getTaxBase(assessableAnnualIncome)+TaxRateCalculator.getTaxRate(assessableAnnualIncome)*(assessableAnnualIncome-1-TaxRateCalculator.getLowerBoundValue(assessableAnnualIncome));
             var takehomePay=assessableAnnualIncome-personalTax;
-            if(maxTHPCalculation){
-                return takehomePay;
-            }
+
             var concessionalContribution=additionalConcessionalContribution+sgc;
             if(concessionalContribution>concessionalContributionCap){
                   var contributionTax=concessionalContribution*concessionalContributionTax+((concessionalContribution-concessionalContributionCap)*excessContributionTax);
@@ -31,12 +29,18 @@ app.service('WithoutSSCalculator', ['TaxRateCalculator','SGCRate','AgeCalculator
             var finalAmount=takehomePay+boostUpSuperBalanceBy;
             var ttakehomePay=personalTax+contributionTax;
 
-            var unattainableTHPS = takehomePay < minTakeHomePay;
-            if(unattainableTHPS){
-            return [0,0,0,unattainableTHPS];
-          }else{
-            return [takehomePay,ttakehomePay,finalAmount,unattainableTHPS];
-          }
+            // var unattainableTHPS = takehomePay < minTakeHomePay;
+
+            // if(maxTHPCalculation){
+            //     console.log("taxwss",ttakehomePay);
+            //     return takehomePay;
+            // }
+
+          //   if(unattainableTHPS){
+          //   return [0,0,0,unattainableTHPS];
+          // }else{
+            return [takehomePay,ttakehomePay,finalAmount,false];
+          // }
       };
 
 }]);
