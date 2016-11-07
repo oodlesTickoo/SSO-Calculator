@@ -226,8 +226,10 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
     $scope.calculateMaxTHP2 = function() {
         var cses1 = $scope.cses.replace("$", "").replace(",", "");
         var thp1 = $scope.thp.replace("$", "").replace(",", "");
-        $scope.maxTHP2 = Math.floor(WithoutSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), Number(thp1), true));
-        // console.log($scope.maxTHP2)
+        // $scope.maxTHP1 = Math.floor(WithoutSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), Number(thp1), true));
+        // console.log(1,$scope.maxTHP1);
+        $scope.maxTHP2 = Math.floor(WithSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1),true));
+        // console.log(2,$scope.maxTHP2);
     }
 
     var ageInput = document.getElementById('ageInput'),
@@ -267,13 +269,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
 
             $scope.needSS = true;
             $scope.calculationsDone = true;
-            $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), Number(thp1), false);
+            $scope.resultWithoutSS = WithoutSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1));
             // console.log("rw/oss", $scope.resultWithoutSS.toString());
             $scope.thpWithoutSS = $scope.resultWithoutSS[0];
             $scope.taxWithoutSS = $scope.resultWithoutSS[1];
             $scope.finalAmountWithoutSS = $scope.resultWithoutSS[2];
             $scope.unattainableTHPS = $scope.resultWithoutSS[3];
-            $scope.resultWithSS = WithSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), Number(thp1), $scope.taxWithoutSS);
+            $scope.resultWithSS = WithSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), false);
             // console.log("rwss", $scope.resultWithSS.toString());
             $scope.thpWithSS = $scope.resultWithSS[0];
             $scope.taxWithSS = $scope.resultWithSS[1];
