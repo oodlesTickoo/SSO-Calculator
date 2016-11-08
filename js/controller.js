@@ -228,13 +228,13 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         var thp1 = $scope.thp.replace("$", "").replace(",", "");
         // $scope.maxTHP1 = Math.floor(WithoutSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), Number(thp1), true));
         // console.log(1,$scope.maxTHP1);
-        $scope.maxTHP2 = Math.floor(WithSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1),true));
+        $scope.maxTHP2 = Math.floor(WithSSCalculator.getMaxTHP($scope.age, $scope.fy, Number(cses1)));
         // console.log(2,$scope.maxTHP2);
 
                 thpSlider.noUiSlider.updateOptions({
             range: {
                 'min': 1000,
-                'max': Math.floor($scope.maxTHP2)
+                'max': $scope.maxTHP2 - $scope.maxTHP2 % 500
             },
         });
 
@@ -283,7 +283,7 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
             $scope.taxWithoutSS = $scope.resultWithoutSS[1];
             $scope.finalAmountWithoutSS = $scope.resultWithoutSS[2];
             $scope.unattainableTHPS = $scope.resultWithoutSS[3];
-            $scope.resultWithSS = WithSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1), false);
+            $scope.resultWithSS = WithSSCalculator.getFinalAmount($scope.age, $scope.fy, Number(cses1),  Number(thp1), false);
             // console.log("rwss", $scope.resultWithSS.toString());
             $scope.thpWithSS = $scope.resultWithSS[0];
             $scope.taxWithSS = $scope.resultWithSS[1];
@@ -383,6 +383,8 @@ app.controller("TTRController", ['$scope', '$timeout', 'AgeCalculator', 'TaxRate
         $scope.thp = (values[handle]);
         // $scope.submitForm2(true);
     });
+
+    $scope.calculateMaxTHP2();
 
     $scope.submitForm2(true);
 
